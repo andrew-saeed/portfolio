@@ -1,0 +1,80 @@
+---
+
+---
+<style lang="scss">
+
+:root {
+    --white: #FEFAE0;
+    --black-light: #475f2b;
+    --black-dark: #283618;
+    --black-dim: rgb(40, 54, 24, 0.8);
+    --green: #63c498;
+    --red: #ff5e32;
+    --yellow: #FFC801;
+    --blue-light: #0198ef;
+    --blue-dark: #5748AE;
+    --blue-dim: rgba(87, 72, 174, 0.8);
+}
+
+/**
+* Fonts
+*/
+.font-inter {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:"slnt" 0;
+}
+
+</style>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Andrew Saeed - Enthusiast Web Developer</title>
+		<meta name="description" content="Portfolio of Andrew Saeed, an Enthusiast Web Developer. View projects and contact information.">
+		<meta property="og:title" content="Andrew Saeed - Enthusiast Web Developer Portfolio">
+		<meta property="og:description" content="View the work and projects of Andrew Saeed, an Enthusiast Web Developer.">
+		<meta property="og:image" content="https://andrew-saeed.dev/me.png">
+		<meta property="og:url" content="https://andrew-saeed.dev">
+		<meta property="og:type" content="website">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-white text-base text-black-dark font-inter">
+
+		<main>
+
+			<div id="home-layout" class="w-full h-svh p-2">
+
+				<section class="h-full flex flex-col justify-center items-center">
+	
+					<header>
+						<h1 class="flex flex-col">
+							<span class="text-large-2 font-bold">Hi :)</span>
+							<span class="text-base-2 capitalize pl-4 pt-2">i'm andrew saeed, <br /> enthusiast Web Developer.</span>
+						</h1>
+					</header>
+	
+					<p class="max-w-[15.625rem] max-h-[15.625rem] mt-9 border-2 border-black-dark rounded-full overflow-hidden">
+						<img src="/me.png" alt="andrew saeed" />
+					</p>
+	
+					<ul>
+						<li>x</li>
+						<li>linkedin</li>
+						<li>github</li>
+					</ul>
+
+				</section>
+
+			</div>
+
+		</main>
+	</body>
+</html>
