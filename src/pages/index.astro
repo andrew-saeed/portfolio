@@ -1,5 +1,8 @@
 ---
-
+import Button from "../components/button.astro"
+import Github from "../icons/github.astro"
+import Linkedin from "../icons/linkedin.astro"
+import X from "../icons/x.astro"
 ---
 <style lang="scss">
 
@@ -57,7 +60,7 @@
 					<header>
 						<h1 class="flex flex-col">
 							<span class="text-large-2 font-bold">Hi :)</span>
-							<span class="text-base-2 capitalize pl-4 pt-2">i'm andrew saeed, <br /> enthusiast Web Developer.</span>
+							<span class="text-base-2 text-black-light font-medium capitalize pl-4 pt-2">i'm andrew saeed, <br /> enthusiast Web Developer.</span>
 						</h1>
 					</header>
 	
@@ -65,10 +68,17 @@
 						<img src="/me.png" alt="andrew saeed" />
 					</p>
 	
-					<ul>
-						<li>x</li>
-						<li>linkedin</li>
-						<li>github</li>
+					<ul class="flex mt-4">
+						<li class="p-1">
+							<Button type="link" href="https://x.com/andrewsaeed" style="icon"><X /></Button>
+						</li>
+						<li class="p-1">
+							<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon"><Linkedin /></Button>
+						</li>
+						<li class="p-1">
+							<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon"><Github /></Button>
+							<Button>test</Button>
+						</li>
 					</ul>
 
 				</section>

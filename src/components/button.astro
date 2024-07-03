@@ -1,0 +1,59 @@
+---
+interface Props {
+  type?: 'button' | 'link';
+  href?: string;
+  style?: 'text' | 'icon';
+  btnType?: 'button' | 'reset' | 'submit';
+  size?: 'medium';
+}
+
+const baseStyle = `bg-black-light
+transition duration-300 ease-in-out
+hover:bg-black-dark`
+
+const styles = {
+  text: `text-white font-bold capitalize rounded-lg`,
+  icon : `relative inline-block bg-black-light rounded-full
+  hover:bg-black-dark
+  transition duration-300 ease-in-out
+  [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%]` 
+}
+
+const sizes = {
+  text: {
+    medium: 'text-base-1 px-4 py-2'
+  },
+  icon: {
+    medium: `p-5 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]`
+  }
+}
+
+const { 
+  type = 'button', 
+  href, 
+  style = 'text', 
+  btnType = 'button',
+  size = 'medium'
+} = Astro.props
+---
+{
+  type === 'link' ? <a 
+    class:list={[
+      baseStyle, 
+      styles[style], 
+      sizes[style][size]
+    ]}
+    href={href}
+  >
+    <slot />
+  </a> : <button 
+    class:list={[
+      baseStyle, 
+      styles[style], 
+      sizes[style][size]
+    ]}
+    type={btnType}
+  >
+    <slot />
+  </button>
+}
