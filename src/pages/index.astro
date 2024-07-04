@@ -2,11 +2,15 @@
 import Button from "../components/button.astro"
 import Github from "../icons/github.astro"
 import Linkedin from "../icons/linkedin.astro"
+import ArrowDown from "../icons/arrow-down.astro"
+import Gear from "../icons/gear.astro"
 import X from "../icons/x.astro"
 ---
 <style lang="scss">
 
 :root {
+	scroll-behavior: smooth;
+
     --white: #FEFAE0;
     --black-light: #475f2b;
     --black-dark: #283618;
@@ -53,34 +57,50 @@ import X from "../icons/x.astro"
 
 		<main>
 
-			<div id="home-layout" class="w-full h-svh p-2">
+			<div id="home-layout" class="h-svh p-2">
 
-				<section class="h-full flex flex-col justify-center items-center">
-	
-					<header>
-						<h1 class="flex flex-col">
-							<span class="text-large-2 font-bold">Hi :)</span>
-							<span class="text-base-2 text-black-light font-medium capitalize pl-4 pt-2">i'm andrew saeed, <br /> enthusiast Web Developer.</span>
-						</h1>
-					</header>
-	
-					<p class="max-w-[15.625rem] max-h-[15.625rem] mt-9 border-2 border-black-dark rounded-full overflow-hidden">
-						<img src="/me.png" alt="andrew saeed" />
-					</p>
-	
-					<ul class="flex mt-4">
-						<li class="p-1">
-							<Button type="link" href="https://x.com/andrewsaeed" style="icon"><X /></Button>
-						</li>
-						<li class="p-1">
-							<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon"><Linkedin /></Button>
-						</li>
-						<li class="p-1">
-							<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon"><Github /></Button>
-							<Button>test</Button>
-						</li>
-					</ul>
+				<section id="top-main" class="h-full flex flex-col justify-center items-center">
 
+					<div class="grid md:grid-cols-[1fr_1fr]">
+
+						<div class="justify-self-center">
+							<p class="max-w-[9.375rem] max-h-[9.375rem] border-2 border-black-dark rounded-full overflow-hidden shadow-base">
+								<img src="/me.png" alt="andrew saeed" />
+							</p>
+			
+							<ul class="flex justify-center mt-4 [&_li]:p-1">
+								<li>
+									<Button type="link" href="https://x.com/andrewsaeed" style="icon" size="small"><X /></Button>
+								</li>
+								<li>
+									<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon" size="small"><Linkedin /></Button>
+								</li>
+								<li>
+									<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon" size="small"><Github /></Button>
+								</li>
+							</ul>
+						</div>
+
+						<div>
+							<h1 class="flex flex-col mt-8 md:mt-0">
+								<span class="text-large-2 font-bold">Hi :)</span>
+								<span class="text-base-2 text-black-dark font-medium capitalize pl-4 pt-2">i'm andrew saeed, <br /> enthusiast Web Developer.</span>
+							</h1>
+						</div>
+					</div>
+
+					<div class="mt-16 animate-bounce">
+						<Button type="link" href="#under-construction" style="icon" size="large" colors="outline"><ArrowDown /></Button>
+					</div>
+
+				</section>
+
+				<section id="under-construction" class="h-full flex flex-col justify-center items-center">
+					
+					<div class="flex items-center">
+						<p class="w-[80px] h-[80px] mr-2 [&_svg_path]:fill-black-light animate-spin"><Gear /></p>
+						<p class="text-base-2 text-black-light font-bold capitalize">under construction ...</p>
+					</div>
 				</section>
 
 			</div>

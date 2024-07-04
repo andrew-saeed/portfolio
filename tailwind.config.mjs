@@ -33,6 +33,9 @@ export default {
 				"medium-1":'1.5rem',//24px
 				"large":'2.25rem',//36px
 				"large-2":'3.75rem'//60px
+			},
+			boxShadow: {
+				'base': '0px 0px 15px -5px var(--black-light)'
 			}
 		},
 	},

@@ -4,27 +4,33 @@ interface Props {
   href?: string;
   style?: 'text' | 'icon';
   btnType?: 'button' | 'reset' | 'submit';
-  size?: 'medium';
+  size?: 'large' | 'medium' | 'small';
+  colors?: 'primary' | 'outline';
 }
 
-const baseStyle = `bg-black-light
-transition duration-300 ease-in-out
-hover:bg-black-dark`
+const baseStyle = `transition duration-300 ease-in-out shadow-base`
+
+const colorsCol = {
+  primary: `bg-black-light hover:bg-black-dark [&_svg_path]:fill-white`,
+  outline: `border border-black-light [&_svg_path]:fill-black-light`
+}
 
 const styles = {
   text: `text-white font-bold capitalize rounded-lg`,
-  icon : `relative inline-block bg-black-light rounded-full
-  hover:bg-black-dark
-  transition duration-300 ease-in-out
+  icon : `relative inline-block rounded-full
   [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%]` 
 }
 
 const sizes = {
   text: {
-    medium: 'text-base-1 px-4 py-2'
+    small: '',
+    medium: 'text-base-1 px-4 py-2',
+    large: '',
   },
   icon: {
-    medium: `p-5 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]`
+    small: `p-4 [&_svg]:w-[1.1rem] [&_svg]:h-[1.1rem]`,
+    medium: `p-5 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]`,
+    large: `p-7 [&_svg]:w-[1.8rem] [&_svg]:h-[1.8rem]`
   }
 }
 
@@ -33,7 +39,8 @@ const {
   href, 
   style = 'text', 
   btnType = 'button',
-  size = 'medium'
+  size = 'medium',
+  colors = 'primary'
 } = Astro.props
 ---
 {
@@ -41,7 +48,8 @@ const {
     class:list={[
       baseStyle, 
       styles[style], 
-      sizes[style][size]
+      sizes[style][size],
+      colorsCol[colors]
     ]}
     href={href}
   >
@@ -50,7 +58,8 @@ const {
     class:list={[
       baseStyle, 
       styles[style], 
-      sizes[style][size]
+      sizes[style][size],
+      colorsCol[colors]
     ]}
     type={btnType}
   >
