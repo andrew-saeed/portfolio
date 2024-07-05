@@ -6,7 +6,7 @@ import ArrowDown from "../icons/arrow-down.astro"
 import Gear from "../icons/gear.astro"
 import X from "../icons/x.astro"
 ---
-<style lang="scss">
+<style lang="scss" is:global>
 
 :root {
 	scroll-behavior: smooth;
@@ -26,12 +26,42 @@ import X from "../icons/x.astro"
 /**
 * Fonts
 */
-.font-inter {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:"slnt" 0;
+.font-mulish {
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--black-light);
+  border-radius: 0rem;
+}
+body::-webkit-scrollbar-track {
+  background-color: var(--white);
+  border: 0.1rem solid #ccc;
+}
+body::-webkit-scrollbar-button {
+  background-color: var(--black-dark);
+  border-radius: 0rem;
+}
+body::-webkit-scrollbar-button:hover {
+	background: var(--black-dark);
+}
+body::-webkit-scrollbar-thumb:hover {
+	background: var(--black-dark);
+}
+@supports not selector(::-webkit-scrollbar) {
+
+	* {
+		scrollbar-width: auto;
+		scrollbar-color: var(--white) var(--black-dark);
+		scrollbar-gutter: stable both-edges;
+	}
 }
 
 </style>
@@ -51,9 +81,9 @@ import X from "../icons/x.astro"
 		<meta property="og:type" content="website">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-white text-base text-black-dark font-inter">
+	<body class="bg-white text-base text-black-dark font-mulish">
 
 		<main>
 
@@ -70,7 +100,7 @@ import X from "../icons/x.astro"
 			
 							<ul class="flex justify-center mt-4 [&_li]:p-1">
 								<li>
-									<Button type="link" href="https://x.com/andrewsaeed" style="icon" size="small"><X /></Button>
+									<Button type="link" href="https://x.com/andrewsaeed95" style="icon" size="small"><X /></Button>
 								</li>
 								<li>
 									<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon" size="small"><Linkedin /></Button>
@@ -98,7 +128,7 @@ import X from "../icons/x.astro"
 				<section id="under-construction" class="h-full flex flex-col justify-center items-center">
 					
 					<div class="flex items-center">
-						<p class="w-[80px] h-[80px] mr-2 [&_svg_path]:fill-black-light animate-spin"><Gear /></p>
+						<p class="w-[40px] h-[40px] mr-2 [&_svg_path]:fill-black-light animate-spin"><Gear /></p>
 						<p class="text-base-2 text-black-light font-bold capitalize">under construction ...</p>
 					</div>
 				</section>
