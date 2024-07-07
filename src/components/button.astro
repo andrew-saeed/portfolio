@@ -2,6 +2,7 @@
 interface Props {
   type?: 'button' | 'link';
   href?: string;
+  target?: '_blank' | '_self';
   style?: 'text' | 'icon';
   btnType?: 'button' | 'reset' | 'submit';
   size?: 'large' | 'medium' | 'small';
@@ -11,12 +12,12 @@ interface Props {
 const baseStyle = `transition duration-300 ease-in-out shadow-base`
 
 const colorsCol = {
-  primary: `bg-black-light hover:bg-black-dark [&_svg_path]:fill-white`,
-  outline: `border border-black-light [&_svg_path]:fill-black-light`
+  primary: `bg-black-light hover:bg-black-dark [&_svg_path]:fill-white-light`,
+  outline: `hover:bg-white-dark border border-black-light [&_svg_path]:fill-black-light`
 }
 
 const styles = {
-  text: `text-white font-bold capitalize rounded-lg`,
+  text: `text-white-light font-bold capitalize rounded-lg`,
   icon : `relative inline-block rounded-full
   [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%]` 
 }
@@ -36,7 +37,8 @@ const sizes = {
 
 const {
   type = 'button', 
-  href, 
+  href,
+  target = '_self',
   style = 'text', 
   btnType = 'button',
   size = 'medium',
@@ -52,6 +54,7 @@ const {
       colorsCol[colors]
     ]}
     href={href}
+    target={target}
   >
     <slot />
   </a> : <button 

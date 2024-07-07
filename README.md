@@ -1,5 +1,9 @@
 # Hi :)
-Welcome to my portfolio. I'm using <a href="https://astro.build/">Astrobuild</a> to build my ✨Awesome✨ portfolio because Astrobuild is so powerful web framework and has the most great Docs.
+Welcome to my portfolio. I'm using <a href="https://astro.build/">Astro</a> to build my ✨awesome✨ portfolio because it's a powerful web framework with excellent documentation.
+
+Astro integrates seamlessly with <a href="https://tailwindcss.com/">Tailwind</a>, making all of Tailwind's utility classes available throughout the application.
+
+Additionally, Astro uses <a href="https://vitejs.dev/">Vite</a> as its underlying build tool, which provides a smooth development experience.
 
 ## 🚀 Commands
 

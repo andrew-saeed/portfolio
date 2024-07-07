@@ -11,7 +11,8 @@ import X from "../icons/x.astro"
 :root {
 	scroll-behavior: smooth;
 
-    --white: #FEFAE0;
+    --white-light: #FEFAE0;
+    --white-dark: #ddd9be;
     --black-light: #475f2b;
     --black-dark: #283618;
     --black-dim: rgb(40, 54, 24, 0.8);
@@ -42,7 +43,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 0rem;
 }
 body::-webkit-scrollbar-track {
-  background-color: var(--white);
+  background-color: var(--white-light);
   border: 0.1rem solid #ccc;
 }
 body::-webkit-scrollbar-button {
@@ -59,7 +60,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 	* {
 		scrollbar-width: auto;
-		scrollbar-color: var(--white) var(--black-dark);
+		scrollbar-color: var(--white-light) var(--black-dark);
 		scrollbar-gutter: stable both-edges;
 	}
 }
@@ -76,14 +77,14 @@ body::-webkit-scrollbar-thumb:hover {
 		<meta name="description" content="Portfolio of Andrew Saeed, an Enthusiast Web Developer. View projects and contact information.">
 		<meta property="og:title" content="Andrew Saeed - Enthusiast Web Developer Portfolio">
 		<meta property="og:description" content="View the work and projects of Andrew Saeed, an Enthusiast Web Developer.">
-		<meta property="og:image" content="https://andrew-saeed.dev/me.png">
-		<meta property="og:url" content="https://andrew-saeed.dev">
+		<meta property="og:image" content="https://andrewsaeed.dev/me.png">
+		<meta property="og:url" content="https://andrewsaeed.dev">
 		<meta property="og:type" content="website">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-white text-base text-black-dark font-mulish">
+	<body class="bg-white-light text-base text-black-dark font-mulish">
 
 		<main>
 
@@ -100,13 +101,13 @@ body::-webkit-scrollbar-thumb:hover {
 			
 							<ul class="flex justify-center mt-4 [&_li]:p-1">
 								<li>
-									<Button type="link" href="https://x.com/andrewsaeed95" style="icon" size="small"><X /></Button>
+									<Button type="link" href="https://x.com/andrewsaeed95" style="icon" size="small" target="_blank"><X /></Button>
 								</li>
 								<li>
-									<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon" size="small"><Linkedin /></Button>
+									<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon" size="small" target="_blank"><Linkedin /></Button>
 								</li>
 								<li>
-									<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon" size="small"><Github /></Button>
+									<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon" size="small" target="_blank"><Github /></Button>
 								</li>
 							</ul>
 						</div>

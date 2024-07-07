@@ -4,7 +4,8 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				white: 'var(--white)',
+				'white-light': 'var(--white-light)',
+				'white-dark': 'var(--white-dark)',
 				'black-light': 'var(--black-light)',
 				'black-dark': 'var(--black-dark)',
 				'black-dim': 'var(--black-dim)',
