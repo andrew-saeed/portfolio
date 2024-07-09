@@ -6,14 +6,16 @@ interface Props {
   style?: 'text' | 'icon';
   btnType?: 'button' | 'reset' | 'submit';
   size?: 'large' | 'medium' | 'small';
-  colors?: 'primary' | 'outline';
+  colors?: 'primary' | 'outline' | 'flat';
+  ariaLabel?:string;
 }
 
 const baseStyle = `transition duration-300 ease-in-out shadow-base`
 
 const colorsCol = {
   primary: `bg-black-light hover:bg-black-dark [&_svg_path]:fill-white-light`,
-  outline: `hover:bg-white-dark border border-black-light [&_svg_path]:fill-black-light`
+  outline: `hover:bg-white-dark border border-black-light [&_svg_path]:fill-black-light`,
+  flat: ``
 }
 
 const styles = {
@@ -42,7 +44,8 @@ const {
   style = 'text', 
   btnType = 'button',
   size = 'medium',
-  colors = 'primary'
+  colors = 'primary',
+  ariaLabel
 } = Astro.props
 ---
 {
@@ -55,6 +58,7 @@ const {
     ]}
     href={href}
     target={target}
+    aria-label={ariaLabel}
   >
     <slot />
   </a> : <button 

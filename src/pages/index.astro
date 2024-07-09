@@ -1,9 +1,10 @@
 ---
+import Nav from "../partials/nav.astro"
+import UnderConstruction from "../partials/under-construction.astro"
 import Button from "../components/button.astro"
 import Github from "../icons/github.astro"
 import Linkedin from "../icons/linkedin.astro"
 import ArrowDown from "../icons/arrow-down.astro"
-import Gear from "../icons/gear.astro"
 import X from "../icons/x.astro"
 ---
 <style lang="scss" is:global>
@@ -12,7 +13,7 @@ import X from "../icons/x.astro"
 	scroll-behavior: smooth;
 
     --white-light: #FEFAE0;
-    --white-dark: #ddd9be;
+    --white-dark: #eae6cf;
     --black-light: #475f2b;
     --black-dark: #283618;
     --black-dim: rgb(40, 54, 24, 0.8);
@@ -67,6 +68,11 @@ body::-webkit-scrollbar-thumb:hover {
 
 </style>
 
+<script>
+	const htmlTag = document.documentElement
+	htmlTag.lang = 'en'
+</script>
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -86,6 +92,8 @@ body::-webkit-scrollbar-thumb:hover {
 	</head>
 	<body class="bg-white-light text-base text-black-dark font-mulish">
 
+		<Nav />
+
 		<main>
 
 			<div id="home-layout" class="h-svh p-2">
@@ -95,19 +103,24 @@ body::-webkit-scrollbar-thumb:hover {
 					<div class="grid md:grid-cols-[1fr_1fr]">
 
 						<div class="justify-self-center">
-							<p class="max-w-[9.375rem] max-h-[9.375rem] border-2 border-black-dark rounded-full overflow-hidden shadow-base">
-								<img src="/me.png" alt="andrew saeed" />
+							<p class="w-[9.375rem] h-[9.375rem] border-2 border-black-dark rounded-full overflow-hidden shadow-base">
+								<img 
+									class="h-full"
+									src="/me_146.webp"
+									srcset="me_146.webp,
+									me_221.webp 2x"
+									alt="test" />
 							</p>
 			
 							<ul class="flex justify-center mt-4 [&_li]:p-1">
 								<li>
-									<Button type="link" href="https://x.com/andrewsaeed95" style="icon" size="small" target="_blank"><X /></Button>
+									<Button type="link" href="https://x.com/andrewsaeed95" style="icon" size="small" target="_blank" ariaLabel="X"><X /></Button>
 								</li>
 								<li>
-									<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon" size="small" target="_blank"><Linkedin /></Button>
+									<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon" size="small" target="_blank" ariaLabel="Linkedin"><Linkedin /></Button>
 								</li>
 								<li>
-									<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon" size="small" target="_blank"><Github /></Button>
+									<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon" size="small" target="_blank" ariaLabel="Github"><Github /></Button>
 								</li>
 							</ul>
 						</div>
@@ -121,17 +134,29 @@ body::-webkit-scrollbar-thumb:hover {
 					</div>
 
 					<div class="mt-16 animate-bounce">
-						<Button type="link" href="#under-construction" style="icon" size="large" colors="outline"><ArrowDown /></Button>
+						<Button type="link" href="#about-me" style="icon" size="large" colors="outline" ariaLabel="about me"><ArrowDown /></Button>
 					</div>
 
 				</section>
 
-				<section id="under-construction" class="h-full flex flex-col justify-center items-center">
+				<section id="about-me" class="h-full flex flex-col justify-center items-center">
+
+					<UnderConstruction />
+				</section>
+
+				<section id="tools" class="h-full flex flex-col justify-center items-center">
 					
-					<div class="flex items-center">
-						<p class="w-[40px] h-[40px] mr-2 [&_svg_path]:fill-black-light animate-spin"><Gear /></p>
-						<p class="text-base-2 text-black-light font-bold capitalize">under construction ...</p>
-					</div>
+					<UnderConstruction />
+				</section>
+
+				<section id="projects" class="h-full flex flex-col justify-center items-center">
+					
+					<UnderConstruction />
+				</section>
+
+				<section id="contacts" class="h-full flex flex-col justify-center items-center">
+					
+					<UnderConstruction />
 				</section>
 
 			</div>

@@ -1,0 +1,148 @@
+---
+---
+<style lang="scss" is:global>
+
+    #main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        transition: opacity 1.5s ease-out, transform 0.3s ease-out;
+        
+        ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-top: 1rem;
+
+            li {
+    
+                a {
+                    display: inline-block;
+                    background-color: var(--white-light);
+                    text-transform: capitalize;
+                    padding: 0.5rem;
+                    border: 0.1rem solid var(--black-light);
+                    border-right: none;
+                    transition: background-color 0.3s ease-out;
+                }
+    
+                &:first-of-type {
+                    
+                    a {
+                        border-radius: 25px 0 0 25px;
+                    }
+                }
+    
+                &:last-of-type {
+    
+                    a {
+                        border: 0.1rem solid var(--black-light);
+                        border-radius: 0 25px 25px 0;
+                    }
+                }
+            }
+    
+            .currentBtn {
+    
+                a {
+                    background-color: var(--black-light);
+                    color: white;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+</style>
+<script>
+    import Alpine from 'alpinejs'
+
+    Alpine.data('mainNav', () => ({
+        lockHighlight: false,
+        init() {
+
+            window.addEventListener('wheel', () => {
+
+                this.lockHighlight = false
+            })
+
+            window.addEventListener('mousedown', (e) => {
+
+                if(e.target === document.documentElement && e.clientX >= document.documentElement.offsetWidth) {
+                    this.lockHighlight = false
+                }
+            })
+
+            this.$el.querySelectorAll('li').forEach( li => {
+
+                li.addEventListener('click', () => {
+                    
+                    this.lockHighlight = true
+                    this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                    li.classList.add('currentBtn')
+                })
+            })
+
+            const sections:HTMLElement[] = Array.from(document.querySelectorAll<HTMLElement>('section'))
+            const observer = new IntersectionObserver(entries => {
+                
+                entries.forEach(entry => {
+                    
+                    if (entry.isIntersecting) {
+
+                        if(this.lockHighlight) return
+                        
+                        if(entry.target.id === 'top-main') {
+
+                            this.$el.style.opacity = '0'
+                            this.$el.style.transform = 'translateY(-100px)'
+                        } else if(entry.target.id === 'about-me') {
+
+                            this.$el.style.opacity = '1'
+                            this.$el.style.transform = 'translateY(0)'
+                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                            this.$el.querySelector('li:nth-child(1)')?.classList.add('currentBtn')
+                        } else if(entry.target.id === 'tools') {
+
+                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                            this.$el.querySelector('li:nth-child(2)')?.classList.add('currentBtn')
+                        } else if(entry.target.id === 'projects') {
+
+                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                            this.$el.querySelector('li:nth-child(3)')?.classList.add('currentBtn')
+                        } else if(entry.target.id === 'contacts') {
+
+                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                            this.$el.querySelector('li:nth-child(4)')?.classList.add('currentBtn')
+                        }
+                    }
+                })
+            }, {threshold: 0.7})
+            sections.forEach( section => observer.observe(section))
+        }
+    }))
+
+    Alpine.start()
+</script>
+<nav id="main-nav" x-data="mainNav">
+
+    <ul>
+        <li>
+            <a href="#about-me" aria-label="about me">about me</a>
+        </li>
+        <li>
+            <a href="#tools" aria-label="tools">tools</a>
+        </li>
+        <li>
+            <a href="#projects" aria-label="projects">projects</a>
+        </li>
+        <li>
+            <a href="#contacts" aria-label="contacts">contacts</a>
+        </li>
+    </ul>
+</nav>
