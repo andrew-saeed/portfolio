@@ -1,11 +1,15 @@
 ---
 import Nav from "../partials/nav.astro"
-import UnderConstruction from "../partials/under-construction.astro"
+import UnderConstruction from "../partials/coming-soon.astro"
 import Button from "../components/button.astro"
 import Github from "../icons/github.astro"
 import Linkedin from "../icons/linkedin.astro"
 import ArrowDown from "../icons/arrow-down.astro"
 import X from "../icons/x.astro"
+import RocketLaunch from "../icons/rocket-launch.astro"
+import LightningBolt from "../icons/lightning-bolt.astro"
+import Flame from "../icons/flame.astro"
+import DownLoad from "../icons/download.astro"
 ---
 <style lang="scss" is:global>
 
@@ -114,13 +118,13 @@ body::-webkit-scrollbar-thumb:hover {
 			
 							<ul class="flex justify-center mt-4 [&_li]:p-1">
 								<li>
-									<Button type="link" href="https://x.com/andrewsaeed95" style="icon" size="small" target="_blank" ariaLabel="X"><X /></Button>
+									<Button ele="link" href="https://x.com/andrewsaeed95" style="primary-icon" size="small-icon" target="_blank" ariaLabel="X"><X /></Button>
 								</li>
 								<li>
-									<Button type="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="icon" size="small" target="_blank" ariaLabel="Linkedin"><Linkedin /></Button>
+									<Button ele="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Linkedin"><Linkedin /></Button>
 								</li>
 								<li>
-									<Button type="link" href="https://www.github.com/andrew-saeed/" style="icon" size="small" target="_blank" ariaLabel="Github"><Github /></Button>
+									<Button ele="link" href="https://www.github.com/andrew-saeed/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
 								</li>
 							</ul>
 						</div>
@@ -134,14 +138,62 @@ body::-webkit-scrollbar-thumb:hover {
 					</div>
 
 					<div class="mt-16 animate-bounce">
-						<Button type="link" href="#about-me" style="icon" size="large" colors="outline" ariaLabel="about me"><ArrowDown /></Button>
+						<Button ele="link" href="#about-me" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
 					</div>
 
 				</section>
 
-				<section id="about-me" class="h-full flex flex-col justify-center items-center">
+				<section id="about-me" class="h-full flex flex-col justify-center items-center pt-14">
 
-					<UnderConstruction />
+					<ul class="max-w-screen-md mx-auto space-y-4">
+
+						<li class="flex justify-start gap-4">
+							<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+								<RocketLaunch />
+							</div>
+							<div>
+								<p class="text-base-2 text-black-light font-black capitalize">
+									aspiring web developer
+								</p>
+								<p>
+									with a strong foundation in HTML, CSS, and JavaScript.
+								</p>
+							</div>
+						</li>
+						<li class="flex justify-start gap-4">
+							<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+								<Flame />
+							</div>
+							<div>
+								<p class="text-base-2 text-black-light font-black capitalize">
+									passionate
+								</p>
+								<p>
+									about learning new technologies and staying updated on the latest trends in web development.
+								</p>
+							</div>
+						</li>
+						<li class="flex justify-start gap-4">
+							<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+								<LightningBolt />
+							</div>
+							<div>
+								<p class="text-base-2 text-black-light font-black capitalize">
+									eager to leverage skills
+								</p>
+								<p>
+									in modern web developing tools to build engaging and user-friendly web applications.
+								</p>
+							</div>
+						</li>
+					</ul>
+
+					<div class="mt-8 md:mt-14">
+						<Button ele="link" href="/resume.pdf" target="_blank" style="primary-icon-text" size="large-icon-text">
+							<DownLoad slot="icon" />
+							<span slot="text">download Resume</span>
+						</Button>
+					</div>
 				</section>
 
 				<section id="tools" class="h-full flex flex-col justify-center items-center">
