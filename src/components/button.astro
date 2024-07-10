@@ -1,75 +1,114 @@
 ---
 interface Props {
-  type?: 'button' | 'link';
+  ele?: 'button' | 'link';
   href?: string;
   target?: '_blank' | '_self';
-  style?: 'text' | 'icon';
   btnType?: 'button' | 'reset' | 'submit';
-  size?: 'large' | 'medium' | 'small';
-  colors?: 'primary' | 'outline' | 'flat';
-  ariaLabel?:string;
+  size?: 
+    'large-text' | 
+    'medium-text' | 
+    'small-text' | 
+    'large-icon' | 
+    'medium-icon' | 
+    'small-icon' | 
+    'small-icon-text' |
+    'medium-icon-text' |
+    'large-icon-text';
+  style?: 
+    'primary-text' | 
+    'outline-text' | 
+    'flat-text' | 
+    'primary-icon' | 
+    'outline-icon' | 
+    'flat-icon' |
+    'primary-icon-text';
+  ariaLabel?: string;
 }
 
-const baseStyle = `transition duration-300 ease-in-out shadow-base`
-
-const colorsCol = {
-  primary: `bg-black-light hover:bg-black-dark [&_svg_path]:fill-white-light`,
-  outline: `hover:bg-white-dark border border-black-light [&_svg_path]:fill-black-light`,
-  flat: ``
-}
+const baseStyle = `relative transition duration-300 ease-in-out shadow-base`
 
 const styles = {
-  text: `text-white-light font-bold capitalize rounded-lg`,
-  icon : `relative inline-block rounded-full
-  [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%]` 
+  'primary-text': `text-white-light font-bold capitalize 
+    rounded-lg 
+    bg-black-light hover:bg-black-dark [&_svg_path]:fill-white-light`
+  ,
+  'outline-text': `text-black-light font-bold capitalize 
+    rounded-lg 
+    hover:bg-white-dark border border-black-light [&_svg_path]:fill-black-light`
+  ,
+  'flat-text': `text-black-light font-bold capitalize 
+    rounded-lg
+    hover:bg-white-dark [&_svg_path]:fill-black-light`
+  ,
+  'primary-icon': `bg-black-light hover:bg-black-dark
+    rounded-full
+    [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg_path]:fill-white-light`
+  ,
+  'outline-icon': `hover:bg-white-dark
+    border border-black-light rounded-full
+    [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg_path]:fill-black-light`
+  ,
+  'flat-icon': `hover:bg-white-dark
+    rounded-full
+    [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg_path]:fill-black-light`
+  ,
+  'primary-icon-text': `bg-black-light hover:bg-black-dark
+    text-white-light font-bold capitalize
+    rounded-lg 
+    [&_svg_path]:fill-white-light`
 }
 
 const sizes = {
-  text: {
-    small: '',
-    medium: 'text-base-1 px-4 py-2',
-    large: '',
-  },
-  icon: {
-    small: `p-4 [&_svg]:w-[1.1rem] [&_svg]:h-[1.1rem]`,
-    medium: `p-5 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]`,
-    large: `p-7 [&_svg]:w-[1.8rem] [&_svg]:h-[1.8rem]`
-  }
+  'small-text': 'text-base px-4 py-2',
+  'medium-text': 'text-base-1 px-4 py-2',
+  'large-text': 'text-base-2 px-4 py-2',
+  'small-icon': `p-4 [&_svg]:w-[1.1rem] [&_svg]:h-[1.1rem]`,
+  'medium-icon': `p-5 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]`,
+  'large-icon': `p-7 [&_svg]:w-[1.8rem] [&_svg]:h-[1.8rem]`,
+  'small-icon-text': 'text-base px-4 py-2 [&_svg]:mr-2 [&_svg]:w-[1.1rem] [&_svg]:h-[1.1rem]',
+  'medium-icon-text': 'text-base-1 px-4 py-2 [&_svg]:mr-2 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]',
+  'large-icon-text': 'text-base-2 px-4 py-2 [&_svg]:mr-2 [&_svg]:w-[1.8rem] [&_svg]:h-[1.8rem]',
 }
 
 const {
-  type = 'button', 
+  ele = 'button', 
   href,
   target = '_self',
-  style = 'text', 
   btnType = 'button',
-  size = 'medium',
-  colors = 'primary',
+  size = 'medium-text',
+  style = 'primary-text',
   ariaLabel
 } = Astro.props
 ---
 {
-  type === 'link' ? <a 
+  ele === 'link' ? <a 
     class:list={[
+      'inline-block',
       baseStyle, 
       styles[style], 
-      sizes[style][size],
-      colorsCol[colors]
+      sizes[size]
     ]}
     href={href}
     target={target}
     aria-label={ariaLabel}
   >
     <slot />
+    <div class="flex items-center">
+      <slot name="icon" />
+      <slot name="text" />
+    </div>
   </a> : <button 
     class:list={[
       baseStyle, 
       styles[style], 
-      sizes[style][size],
-      colorsCol[colors]
+      sizes[size]
     ]}
     type={btnType}
   >
     <slot />
+    <div class="flex items-center">
+      <slot name="icon" />
+      <slot name="text" />
+    </div>
   </button>
 }
