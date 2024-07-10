@@ -10,6 +10,9 @@ import RocketLaunch from "../icons/rocket-launch.astro"
 import LightningBolt from "../icons/lightning-bolt.astro"
 import Flame from "../icons/flame.astro"
 import DownLoad from "../icons/download.astro"
+import AstroBuild from "../icons/astro.astro"
+import TailWindCSS from "../icons/tailwindcss.astro"
+import Alpinejs from "../icons/alpinejs.astro"
 ---
 <style lang="scss" is:global>
 
@@ -198,7 +201,47 @@ body::-webkit-scrollbar-thumb:hover {
 
 				<section id="tools" class="h-full flex flex-col justify-center items-center">
 					
-					<UnderConstruction />
+					<ul>
+						<li>
+							<a 
+								class="inline-block w-full h-full
+								p-4 border-4 border-black-light rounded-full 
+								[&_svg_path]:fill-black-light
+								hover:bg-white-dark
+								transition duration-300 ease-out" 
+								href="https://astro.build/" 
+								target="_blank"
+							>
+								<AstroBuild />
+							</a>
+						</li>
+						<li>
+							<a 
+								class="inline-block w-full h-full
+								p-4 border-4 border-black-light rounded-full 
+								[&_svg_path]:fill-black-light
+								hover:bg-white-dark
+								transition duration-300 ease-out" 
+								href="https://astro.build/" 
+								target="_blank"
+							>
+								<TailWindCSS />
+							</a>
+						</li>
+						<li>
+							<a 
+								class="inline-block w-full h-full
+								p-4 border-4 border-black-light rounded-full 
+								[&_svg_path]:fill-black-light
+								hover:bg-white-dark
+								transition duration-300 ease-out" 
+								href="https://astro.build/" 
+								target="_blank"
+							>
+								<Alpinejs />
+							</a>
+						</li>
+					</ul>
 				</section>
 
 				<section id="projects" class="h-full flex flex-col justify-center items-center">
