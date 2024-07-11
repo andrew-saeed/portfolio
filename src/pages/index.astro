@@ -141,12 +141,12 @@ body::-webkit-scrollbar-thumb:hover {
 					</div>
 
 					<div class="mt-16 animate-bounce">
-						<Button ele="link" href="#about-me" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
+						<Button ele="link" href="#i-m" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
 					</div>
 
 				</section>
 
-				<section id="about-me" class="h-full flex flex-col justify-center items-center pt-14">
+				<section id="i-m" class="h-full flex flex-col justify-center items-center pt-14">
 
 					<ul class="max-w-screen-md mx-auto space-y-4">
 
@@ -199,7 +199,7 @@ body::-webkit-scrollbar-thumb:hover {
 					</div>
 				</section>
 
-				<section id="tools" class="h-full flex flex-col justify-center items-center">
+				<section id="web-stack" class="h-full flex flex-col justify-center items-center">
 					
 					<ul>
 						<li>
@@ -208,9 +208,10 @@ body::-webkit-scrollbar-thumb:hover {
 								p-4 border-4 border-black-light rounded-full 
 								[&_svg_path]:fill-black-light
 								hover:bg-white-dark
-								transition duration-300 ease-out" 
+								transition duration-300 ease-out shadow-base" 
 								href="https://astro.build/" 
 								target="_blank"
+								aria-label="astro build"
 							>
 								<AstroBuild />
 							</a>
@@ -221,9 +222,10 @@ body::-webkit-scrollbar-thumb:hover {
 								p-4 border-4 border-black-light rounded-full 
 								[&_svg_path]:fill-black-light
 								hover:bg-white-dark
-								transition duration-300 ease-out" 
-								href="https://astro.build/" 
+								transition duration-300 ease-out shadow-base" 
+								href="https://tailwindcss.com/"
 								target="_blank"
+								aria-label="tailwind css"
 							>
 								<TailWindCSS />
 							</a>
@@ -234,9 +236,10 @@ body::-webkit-scrollbar-thumb:hover {
 								p-4 border-4 border-black-light rounded-full 
 								[&_svg_path]:fill-black-light
 								hover:bg-white-dark
-								transition duration-300 ease-out" 
-								href="https://astro.build/" 
+								transition duration-300 ease-out shadow-base" 
+								href="https://alpinejs.dev/" 
 								target="_blank"
+								aria-label="alpinejs"
 							>
 								<Alpinejs />
 							</a>
@@ -244,9 +247,28 @@ body::-webkit-scrollbar-thumb:hover {
 					</ul>
 				</section>
 
-				<section id="projects" class="h-full flex flex-col justify-center items-center">
+				<section id="work" class="h-full flex flex-col justify-center items-center">
 					
-					<UnderConstruction />
+					<div class="text-center text-black-light">
+						
+						<p class="text-medium-1 font-bold capitalize">
+							working on my portfolio
+						</p>
+
+						<a 
+							class="inline-block px-4 mt-4 border-4 border-black-dark rounded-full hover:bg-white-dark"
+							href="https://github.com/andrew-saeed/portfolio"
+							aria-label="source-code"
+						>
+							<div class="text-base-1 text-black-dark font-black flex items-center">
+								{`<Source-Code `} 
+								<span class="inline-block px-2 w-[3rem] h-[3rem] [&_svg_path]:fill-black-dark">
+									<Github />
+								</span>
+								{`/>`}
+							</div>
+						</a>
+					</div>
 				</section>
 
 				<section id="contacts" class="h-full flex flex-col justify-center items-center">

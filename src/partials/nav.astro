@@ -101,17 +101,17 @@
 
                             this.$el.style.opacity = '0'
                             this.$el.style.transform = 'translateY(-100px)'
-                        } else if(entry.target.id === 'about-me') {
+                        } else if(entry.target.id === 'i-m') {
 
                             this.$el.style.opacity = '1'
                             this.$el.style.transform = 'translateY(0)'
                             this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
                             this.$el.querySelector('li:nth-child(1)')?.classList.add('currentBtn')
-                        } else if(entry.target.id === 'tools') {
+                        } else if(entry.target.id === 'web-satck') {
 
                             this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
                             this.$el.querySelector('li:nth-child(2)')?.classList.add('currentBtn')
-                        } else if(entry.target.id === 'projects') {
+                        } else if(entry.target.id === 'wrok') {
 
                             this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
                             this.$el.querySelector('li:nth-child(3)')?.classList.add('currentBtn')
@@ -133,13 +133,13 @@
 
     <ul>
         <li>
-            <a href="#about-me" aria-label="about me">about me</a>
+            <a href="#i-m" aria-label="i-m">i'm</a>
         </li>
         <li>
-            <a href="#tools" aria-label="tools">tools</a>
+            <a href="#web-stack" aria-label="web-stack">web stack</a>
         </li>
         <li>
-            <a href="#projects" aria-label="projects">projects</a>
+            <a href="#work" aria-label="work">work</a>
         </li>
         <li>
             <a href="#contacts" aria-label="contacts">contacts</a>
