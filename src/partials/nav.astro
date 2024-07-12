@@ -29,6 +29,10 @@
                     border: 0.1rem solid var(--black-light);
                     border-right: none;
                     transition: background-color 0.3s ease-out;
+
+                    &[href='#dm'] {
+                        text-transform: uppercase;
+                    }
                 }
     
                 &:first-of-type {
@@ -101,7 +105,7 @@
 
                             this.$el.style.opacity = '0'
                             this.$el.style.transform = 'translateY(-100px)'
-                        } else if(entry.target.id === 'i-m') {
+                        } else if(entry.target.id === 'me') {
 
                             this.$el.style.opacity = '1'
                             this.$el.style.transform = 'translateY(0)'
@@ -126,14 +130,12 @@
             sections.forEach( section => observer.observe(section))
         }
     }))
-
-    Alpine.start()
 </script>
 <nav id="main-nav" x-data="mainNav">
 
     <ul>
         <li>
-            <a href="#i-m" aria-label="i-m">i'm</a>
+            <a href="#me" aria-label="me">me</a>
         </li>
         <li>
             <a href="#web-stack" aria-label="web-stack">web stack</a>
@@ -142,7 +144,7 @@
             <a href="#work" aria-label="work">work</a>
         </li>
         <li>
-            <a href="#contacts" aria-label="contacts">contacts</a>
+            <a href="#dm" aria-label="dm">dm</a>
         </li>
     </ul>
 </nav>

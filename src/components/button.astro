@@ -23,6 +23,7 @@ interface Props {
     'flat-icon' |
     'primary-icon-text';
   ariaLabel?: string;
+  stretch?: boolean;
 }
 
 const baseStyle = `relative transition duration-300 ease-in-out shadow-base`
@@ -30,29 +31,29 @@ const baseStyle = `relative transition duration-300 ease-in-out shadow-base`
 const styles = {
   'primary-text': `text-white-light font-bold capitalize 
     rounded-lg 
-    bg-black-light hover:bg-black-dark [&_svg_path]:fill-white-light`
+    bg-black-light [&:not(:has(.loading))]:hover:bg-black-dark [&_svg_path]:fill-white-light`
   ,
   'outline-text': `text-black-light font-bold capitalize 
     rounded-lg 
-    hover:bg-white-dark border border-black-light [&_svg_path]:fill-black-light`
+    [&:not(:has(.loading))]:hover:bg-white-dark border border-black-light [&_svg_path]:fill-black-light`
   ,
   'flat-text': `text-black-light font-bold capitalize 
     rounded-lg
-    hover:bg-white-dark [&_svg_path]:fill-black-light`
+    [&:not(:has(.loading))]:hover:bg-white-dark [&_svg_path]:fill-black-light`
   ,
-  'primary-icon': `bg-black-light hover:bg-black-dark
+  'primary-icon': `bg-black-light [&:not(:has(.loading))]:hover:bg-black-dark
     rounded-full
     [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg_path]:fill-white-light`
   ,
-  'outline-icon': `hover:bg-white-dark
+  'outline-icon': `[&:not(:has(.loading))]:hover:bg-white-dark
     border border-black-light rounded-full
     [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg_path]:fill-black-light`
   ,
-  'flat-icon': `hover:bg-white-dark
+  'flat-icon': `[&:not(:has(.loading))]:hover:bg-white-dark
     rounded-full
     [&_svg]:absolute [&_svg]:translate-x-[-50%] [&_svg]:translate-y-[-50%] [&_svg_path]:fill-black-light`
   ,
-  'primary-icon-text': `bg-black-light hover:bg-black-dark
+  'primary-icon-text': `flex justify-center bg-black-light [&:not(:has(.loading))]:hover:bg-black-dark
     text-white-light font-bold capitalize
     rounded-lg 
     [&_svg_path]:fill-white-light`
@@ -65,9 +66,9 @@ const sizes = {
   'small-icon': `p-4 [&_svg]:w-[1.1rem] [&_svg]:h-[1.1rem]`,
   'medium-icon': `p-5 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]`,
   'large-icon': `p-7 [&_svg]:w-[1.8rem] [&_svg]:h-[1.8rem]`,
-  'small-icon-text': 'text-base px-4 py-2 [&_svg]:mr-2 [&_svg]:w-[1.1rem] [&_svg]:h-[1.1rem]',
-  'medium-icon-text': 'text-base-1 px-4 py-2 [&_svg]:mr-2 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]',
-  'large-icon-text': 'text-base-2 px-4 py-2 [&_svg]:mr-2 [&_svg]:w-[1.8rem] [&_svg]:h-[1.8rem]',
+  'small-icon-text': 'text-base px-4 py-2 [&_.text]:ml-2 [&_svg]:w-[1.1rem] [&_svg]:h-[1.1rem]',
+  'medium-icon-text': 'text-base-1 px-4 py-2 [&_.text]:ml-2 [&_svg]:w-[1.3rem] [&_svg]:h-[1.3rem]',
+  'large-icon-text': 'text-base-2 px-4 py-2 [&_.text]:ml-2 [&_svg]:w-[1.8rem] [&_svg]:h-[1.8rem]',
 }
 
 const {
@@ -77,16 +78,18 @@ const {
   btnType = 'button',
   size = 'medium-text',
   style = 'primary-text',
-  ariaLabel
+  ariaLabel,
+  stretch = false
 } = Astro.props
 ---
 {
   ele === 'link' ? <a 
     class:list={[
-      'inline-block',
+      'inline-block [&:has(.loading)]:cursor-default [&:has(.loading)]:opacity-50',
       baseStyle, 
       styles[style], 
-      sizes[size]
+      sizes[size],
+      {'w-full flex justify-center': stretch}
     ]}
     href={href}
     target={target}
@@ -99,9 +102,11 @@ const {
     </div>
   </a> : <button 
     class:list={[
+      '[&:has(.loading)]:cursor-default [&:has(.loading)]:opacity-50',
       baseStyle, 
       styles[style], 
-      sizes[size]
+      sizes[size],
+      {'w-full': stretch}
     ]}
     type={btnType}
   >

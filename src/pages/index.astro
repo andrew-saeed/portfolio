@@ -1,6 +1,6 @@
 ---
 import Nav from "../partials/nav.astro"
-import UnderConstruction from "../partials/coming-soon.astro"
+import DmForWorkForm from "../partials/dm-for-work-form.astro"
 import Button from "../components/button.astro"
 import Github from "../icons/github.astro"
 import Linkedin from "../icons/linkedin.astro"
@@ -30,11 +30,10 @@ import Alpinejs from "../icons/alpinejs.astro"
     --blue-light: #0198ef;
     --blue-dark: #5748AE;
     --blue-dim: rgba(87, 72, 174, 0.8);
+	--gray-light: #bcbcbf;
 }
 
-/**
-* Fonts
-*/
+/* Fonts */
 .font-mulish {
   font-family: "Mulish", sans-serif;
   font-optical-sizing: auto;
@@ -141,12 +140,12 @@ body::-webkit-scrollbar-thumb:hover {
 					</div>
 
 					<div class="mt-16 animate-bounce">
-						<Button ele="link" href="#i-m" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
+						<Button ele="link" href="#me" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
 					</div>
 
 				</section>
 
-				<section id="i-m" class="h-full flex flex-col justify-center items-center pt-14">
+				<section id="me" class="h-full flex flex-col justify-center items-center pt-14">
 
 					<ul class="max-w-screen-md mx-auto space-y-4">
 
@@ -193,8 +192,10 @@ body::-webkit-scrollbar-thumb:hover {
 
 					<div class="mt-8 md:mt-14">
 						<Button ele="link" href="/resume.pdf" target="_blank" style="primary-icon-text" size="large-icon-text">
-							<DownLoad slot="icon" />
-							<span slot="text">download Resume</span>
+							<span class="icon">
+								<DownLoad slot="icon" />
+							</span>
+							<span class="text" slot="text">download Resume</span>
 						</Button>
 					</div>
 				</section>
@@ -271,9 +272,9 @@ body::-webkit-scrollbar-thumb:hover {
 					</div>
 				</section>
 
-				<section id="contacts" class="h-full flex flex-col justify-center items-center">
+				<section id="dm" class="h-full flex flex-col justify-center items-center">
 					
-					<UnderConstruction />
+					<DmForWorkForm />
 				</section>
 
 			</div>
