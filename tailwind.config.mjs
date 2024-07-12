@@ -14,7 +14,8 @@ export default {
 				yellow: 'var(--yellow)',
 				'blue-light': 'var(--blue-light)',
 				'blue-dark': 'var(--blue-dark)',
-				'blue-dim': 'var(--blue-dim)'
+				'blue-dim': 'var(--blue-dim)',
+				'gray-light': 'var(--gray-light)'
 			},
 			screens: {
 				xs: '320px',

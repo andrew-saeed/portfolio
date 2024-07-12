@@ -1,0 +1,98 @@
+---
+import TextInput from "../components/text-input.astro"
+import TextArea from "../components/text-area.astro"
+import Button from "../components/button.astro"
+import FlyingPaper from "../icons/flying-paper.astro"
+import Spinner from "../icons/spinner.astro"
+---
+<script>
+    import Alpine from 'alpinejs'
+    import { z } from 'zod'
+
+    const InputsSchema = z.object({
+        subject: z.string().min(1, 'subject is required'),
+        email: z.string().min(1, 'email is required').email('email is not valid'),
+        message: z.string().min(9, 'message is too short').max(255, 'message max is 255')
+    })
+
+    type InputsSchema = z.infer<typeof InputsSchema>
+
+    Alpine.data('dmForWork', () => ({
+        sending: false,
+        errors: {
+            subject: '',
+            email: '',
+            message: ''
+        },
+        validate(inputs:InputsSchema) {
+
+            this.errors = { subject: '', email: '', message: '' }
+
+            return InputsSchema.safeParse(inputs)
+        },
+        async submit(e: SubmitEvent) {
+
+            if(this.sending) return
+
+            this.sending = true
+
+            const form = e.target as HTMLFormElement
+            const subjectInput = form.elements.namedItem('subject') as HTMLInputElement
+            const emailInput = form.elements.namedItem('email') as HTMLInputElement
+            const messageInput = form.elements.namedItem('message') as HTMLInputElement
+
+            const inputs = {
+                subject: subjectInput.value,
+                email: emailInput.value,
+                message: messageInput.value
+            }
+            
+            const result = this.validate(inputs)
+            if(!result.success) {
+
+                result.error?.issues.forEach(error => {
+
+                    const errorPath = error.path[0] as keyof typeof this.errors
+                    if (!this.errors[errorPath]) this.errors[errorPath] = error.message
+                })
+            } else {
+
+                try {
+
+                    await fetch(`${import.meta.env.PUBLIC_SITE_URL}/dm-for-work/`, {
+                        method: 'POST',
+                        body: JSON.stringify(result)
+                    })
+                } catch(e) {
+
+                    console.log('server error')
+                }
+            }
+
+            this.sending = false
+        }
+    }))
+    
+    Alpine.start()
+</script>
+<form x-data="dmForWork" @submit.prevent="submit" id="dm-for-work" action="#" novalidate class="w-full max-w-screen-sm mx-auto text-sm-1 -mt-24 space-y-2">
+
+    <div>
+        <TextInput id="subject" name="subject" placeholder="subject" />
+    </div>
+    <div>
+        <TextInput type="email" id="email" name="email" placeholder="email" />
+    </div>
+    <div>
+        <TextArea id="message" name="message" placeholder="message" />
+    </div>
+    <Button btnType="submit" style="primary-icon-text" size="large-icon-text" stretch={true}>
+        <span class="icon" x-show="!sending">
+            <FlyingPaper slot="icon" />
+        </span>
+        <span class="icon animate-spin" :class="{'loading': sending}" x-show="sending">
+            <Spinner slot="icon" />
+        </span>
+        <span class="text" slot="text" x-text="sending ? 'sending' : 'send'"></span>
+    </Button>
+</form>

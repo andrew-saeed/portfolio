@@ -1,0 +1,20 @@
+---
+interface Props {
+    id: string;
+    name: string;
+    placeholder: string;
+}
+
+const { id, name, placeholder } = Astro.props
+---
+<textarea 
+    id={id} 
+    name={name}
+    placeholder={placeholder}
+    rows="4"
+    class="w-full 
+    bg-white-light 
+    p-2 border-2 border-black-light rounded-lg
+    resize-none
+    placeholder:text-gray-light placeholder:font-bold placeholder:capitalize" />
+<p data-name={name} x-show="errors[$el.dataset.name]" x-text="' * ' + errors[$el.dataset.name]" class="text-red text-sm-1 font-bold capitalize"></p>
