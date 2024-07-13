@@ -1,8 +1,8 @@
-import type { Config, Context } from "@netlify/functions"
+import type { Config } from "@netlify/functions"
 
 import { TransactionalEmailsApi, SendSmtpEmail, TransactionalEmailsApiApiKeys } from "@getbrevo/brevo"
 
-export default async (req: Request, context: Context) => {
+export default async (req: Request) => {
 
   const apiInstance = new TransactionalEmailsApi()
   apiInstance.setApiKey(
