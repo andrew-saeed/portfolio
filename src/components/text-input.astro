@@ -15,6 +15,7 @@ const { type = 'text', id, name, placeholder } = Astro.props
     placeholder={placeholder}
     class="w-full 
     bg-white-light 
+    text-base-2
     p-2 border-2 border-black-light rounded-lg 
-    placeholder:text-gray-light placeholder:font-bold placeholder:capitalize" />
+    placeholder:text-base-2 placeholder:text-gray-light placeholder:font-bold placeholder:capitalize" />
 <p data-name={name} x-show="errors[$el.dataset.name]" x-text="' * ' + errors[$el.dataset.name]" class="text-red text-sm-1 font-bold capitalize mt-2"></p>
