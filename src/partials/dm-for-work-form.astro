@@ -58,22 +58,22 @@ import Spinner from "../icons/spinner.astro"
             } else {
 
                 try {
-
+                    
                     await fetch(`${import.meta.env.PUBLIC_SITE_URL}/dm-for-work/`, {
                         method: 'POST',
                         body: JSON.stringify(result)
-                    })
-                } catch(e) {
+                    });
+                    
+                    (Alpine.store('notificationModal') as NotificationModal).open({title: 'thank you', body: 'Email was sent.'});
+                } catch {
 
-                    console.log('server error')
+                    (Alpine.store('notificationModal') as NotificationModal).open({title: 'error', body: 'Sorry, an error has occurred.'});
                 }
             }
 
             this.sending = false
         }
     }))
-    
-    Alpine.start()
 </script>
 <form x-data="dmForWork" @submit.prevent="submit" id="dm-for-work" action="#" novalidate class="w-full max-w-screen-sm mx-auto text-sm-1 space-y-2">
 

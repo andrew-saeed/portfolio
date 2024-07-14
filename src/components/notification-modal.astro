@@ -1,0 +1,57 @@
+---
+import CloseCircle from "../icons/close-circle-.astro"
+import Button from "./button.astro"
+---
+<script>
+    import Alpine from 'alpinejs'
+
+    Alpine.store('notificationModal', {
+        isOpen: false,
+        title: '',
+        body: '',
+        open({title, body}:{title: string, body: string}):void {
+            document.body.style.overflowY = 'hidden'
+            
+            this.isOpen = true
+            this.title = title
+            this.body = body
+        },
+        close():void {
+            document.body.style.overflowY = 'auto'
+
+            this.isOpen = false
+        }
+    } as NotificationModal)
+
+    Alpine.start()
+</script>
+
+<div id="notification-modal" x-data>
+
+	<template x-teleport="body">
+
+        <div class="w-full h-svh fixed top-0 left-0 z-20 bg-black-dim flex justify-center items-center" x-show="$store.notificationModal.isOpen" x-transition>
+
+            <div class="w-full max-w-screen-sm bg-white-light flex flex-col m-2 p-4 rounded-lg">
+
+                <div class="modal-title flex justify-between">
+
+                    <p x-text="$store.notificationModal.title" class="text-black-dark text-medium-1 font-black capitalize"></p>
+                    <p @click="$store.notificationModal.close()" class="w-[2rem] h-[2rem] cursor-pointer">
+                        <CloseCircle />
+                    </p>
+                </div>
+                <div class="modal-body">
+                    
+                    <p x-text="$store.notificationModal.body" class="text-black-light text-base-2"></p>
+                </div>
+                <div class="modal-footer mt-12 text-right">
+
+                    <div @click="$store.notificationModal.close()">
+                        <Button style="primary-text" size="medium-text" stretch={true}>ok</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
