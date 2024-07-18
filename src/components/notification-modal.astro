@@ -2,30 +2,6 @@
 import CloseCircle from "../icons/close-circle-.astro"
 import Button from "./button.astro"
 ---
-<script>
-    import Alpine from 'alpinejs'
-
-    Alpine.store('notificationModal', {
-        isOpen: false,
-        title: '',
-        body: '',
-        open({title, body}:{title: string, body: string}):void {
-            document.body.style.overflowY = 'hidden'
-            
-            this.isOpen = true
-            this.title = title
-            this.body = body
-        },
-        close():void {
-            document.body.style.overflowY = 'auto'
-
-            this.isOpen = false
-        }
-    } as NotificationModal)
-
-    Alpine.start()
-</script>
-
 <div id="notification-modal" x-data>
 
 	<template x-teleport="body">

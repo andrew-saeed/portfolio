@@ -1,7 +1,12 @@
 ---
+import Base from "../layouts/base.astro"
+
 import Nav from "../partials/nav.astro"
 import DmForWorkForm from "../partials/dm-for-work-form.astro"
+
+import NotificationModal from "../components/notification-modal.astro"
 import Button from "../components/button.astro"
+
 import Github from "../icons/github.astro"
 import Linkedin from "../icons/linkedin.astro"
 import ArrowDown from "../icons/arrow-down.astro"
@@ -15,319 +20,245 @@ import TailWindCSS from "../icons/tailwindcss.astro"
 import Alpinejs from "../icons/alpinejs.astro"
 import Gear from "../icons/gear.astro"
 import OrangeSlice from "../icons/orange-slice.astro"
-import NotificationModal from "../components/notification-modal.astro"
 ---
-<style lang="scss" is:global>
+<script src="/src/lib/index.ts"></script>
+<Base>
 
-:root {
-	scroll-behavior: smooth;
+	<title>Andrew Saeed - Enthusiast Web Developer</title>
+	<meta name="description" content="Portfolio of Andrew Saeed, an Enthusiast Web Developer. View projects and contact information.">
+	<meta property="og:title" content="Andrew Saeed - Enthusiast Web Developer Portfolio">
+	<meta property="og:description" content="View the work and projects of Andrew Saeed, an Enthusiast Web Developer.">
+	<meta property="og:image" content="https://andrewsaeed.dev/me.png">
+	<meta property="og:url" content="https://andrewsaeed.dev">
+	<meta property="og:type" content="website">
 
-    --white-light: #FEFAE0;
-    --white-dark: #eae6cf;
-    --black-light: #475f2b;
-    --black-dark: #283618;
-    --black-dim: rgb(40, 54, 24, 0.8);
-    --green: #63c498;
-    --red: #ff5e32;
-    --yellow: #FFC801;
-    --blue-light: #0198ef;
-    --blue-dark: #5748AE;
-    --blue-dim: rgba(87, 72, 174, 0.8);
-	--gray-light: #bcbcbf;
-}
+	<Nav slot="nav" />
 
-/* Fonts */
-.font-mulish {
-  font-family: "Mulish", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
+	<main slot="main">
 
-/* Scrollbar */
-body::-webkit-scrollbar {
-  width: 0.5rem;
-}
-body::-webkit-scrollbar-thumb {
-  background: var(--black-light);
-  border-radius: 0rem;
-}
-body::-webkit-scrollbar-track {
-  background-color: var(--white-light);
-  border: 0.1rem solid #ccc;
-}
-body::-webkit-scrollbar-button {
-  background-color: var(--black-dark);
-  border-radius: 0rem;
-}
-body::-webkit-scrollbar-button:hover {
-	background: var(--black-dark);
-}
-body::-webkit-scrollbar-thumb:hover {
-	background: var(--black-dark);
-}
-@supports not selector(::-webkit-scrollbar) {
+		<div id="home-layout" class="relative p-2">
 
-	* {
-		scrollbar-width: auto;
-		scrollbar-color: var(--white-light) var(--black-dark);
-		scrollbar-gutter: stable both-edges;
-	}
-}
+			<section id="top-main" class="h-svh flex flex-col justify-center items-center">
 
-</style>
+				<div class="grid md:grid-cols-[1fr_1fr]">
 
-<script>
-	const htmlTag = document.documentElement
-	htmlTag.lang = 'en'
-</script>
+					<div class="justify-self-center">
+						<p class="w-[9.375rem] h-[9.375rem] border-2 border-black-dark rounded-full overflow-hidden shadow-base">
+							<img 
+								class="h-full"
+								src="/me_146.webp"
+								srcset="me_146.webp,
+								me_221.webp 2x"
+								alt="test" />
+						</p>
+		
+						<ul class="flex justify-center mt-4 [&_li]:p-1">
+							<li>
+								<Button ele="link" href="https://x.com/andrewsaeed95" style="primary-icon" size="small-icon" target="_blank" ariaLabel="X"><X /></Button>
+							</li>
+							<li>
+								<Button ele="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Linkedin"><Linkedin /></Button>
+							</li>
+							<li>
+								<Button ele="link" href="https://www.github.com/andrew-saeed/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
+							</li>
+						</ul>
+					</div>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Andrew Saeed - Enthusiast Web Developer</title>
-		<meta name="description" content="Portfolio of Andrew Saeed, an Enthusiast Web Developer. View projects and contact information.">
-		<meta property="og:title" content="Andrew Saeed - Enthusiast Web Developer Portfolio">
-		<meta property="og:description" content="View the work and projects of Andrew Saeed, an Enthusiast Web Developer.">
-		<meta property="og:image" content="https://andrewsaeed.dev/me.png">
-		<meta property="og:url" content="https://andrewsaeed.dev">
-		<meta property="og:type" content="website">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-	</head>
-	<body class="bg-white-light text-base text-black-dark font-mulish">
+					<div>
+						<h1 class="flex flex-col mt-8 md:mt-0">
+							<span class="text-large-2 font-bold">Hi :)</span>
+							<span class="text-base-2 text-black-dark font-medium capitalize pl-4 pt-2">i'm andrew saeed, <br /> enthusiast Web Developer.</span>
+						</h1>
+					</div>
+				</div>
 
-		<Nav />
+				<div class="mt-16 animate-bounce">
+					<Button ele="link" href="#me" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
+				</div>
 
-		<main>
+			</section>
 
-			<div id="home-layout" class="relative p-2">
+			<section id="me" class="flex flex-col justify-center items-center overflow-hidden py-24">
 
-				<section id="top-main" class="h-svh flex flex-col justify-center items-center">
+				<ul class="max-w-screen-md mx-auto space-y-4">
 
-					<div class="grid md:grid-cols-[1fr_1fr]">
-
-						<div class="justify-self-center">
-							<p class="w-[9.375rem] h-[9.375rem] border-2 border-black-dark rounded-full overflow-hidden shadow-base">
-								<img 
-									class="h-full"
-									src="/me_146.webp"
-									srcset="me_146.webp,
-									me_221.webp 2x"
-									alt="test" />
-							</p>
-			
-							<ul class="flex justify-center mt-4 [&_li]:p-1">
-								<li>
-									<Button ele="link" href="https://x.com/andrewsaeed95" style="primary-icon" size="small-icon" target="_blank" ariaLabel="X"><X /></Button>
-								</li>
-								<li>
-									<Button ele="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Linkedin"><Linkedin /></Button>
-								</li>
-								<li>
-									<Button ele="link" href="https://www.github.com/andrew-saeed/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
-								</li>
-							</ul>
+					<li id="aspiring-web-developer" class="flex justify-start gap-4">
+						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+							<RocketLaunch />
 						</div>
-
 						<div>
-							<h1 class="flex flex-col mt-8 md:mt-0">
-								<span class="text-large-2 font-bold">Hi :)</span>
-								<span class="text-base-2 text-black-dark font-medium capitalize pl-4 pt-2">i'm andrew saeed, <br /> enthusiast Web Developer.</span>
-							</h1>
+							<p class="text-base-2 text-black-light font-black capitalize">
+								aspiring web developer
+							</p>
+							<p>
+								with a strong foundation in HTML, CSS, and JavaScript.
+							</p>
 						</div>
+					</li>
+					<li id="passionate" class="flex justify-start gap-4">
+						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+							<Flame />
+						</div>
+						<div>
+							<p class="text-base-2 text-black-light font-black capitalize">
+								passionate
+							</p>
+							<p>
+								about learning new technologies and staying updated on the latest trends in web development.
+							</p>
+						</div>
+					</li>
+					<li id="eager-to-leverage-skills" class="flex justify-start gap-4">
+						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+							<LightningBolt />
+						</div>
+						<div>
+							<p class="text-base-2 text-black-light font-black capitalize">
+								eager to leverage skills
+							</p>
+							<p>
+								in modern web developing tools to build engaging and user-friendly web applications.
+							</p>
+						</div>
+					</li>
+				</ul>
+
+				<div id="download-resume" class="mt-8 md:mt-14">
+					<Button ele="link" href="/resume.pdf" target="_blank" style="primary-icon-text" size="large-icon-text">
+						<span class="icon">
+							<DownLoad slot="icon" />
+						</span>
+						<span class="text" slot="text">download Resume</span>
+					</Button>
+				</div>
+			</section>
+
+			<section id="web-stack" class="bg-[linear-gradient(0deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_15%,_rgba(236,232,208,1)_85%,_rgba(254,250,224,1)_100%)] flex flex-col justify-center items-center -mx-2 pt-36 pb-24 overflow-hidden">
+				
+				<div class="relative">
+
+					<div id="orange-slice" class="absolute top-[-20%] left-[-5%] w-[120px] h-[120px] rotate-180 [&_svg_path]:fill-black-light">
+						<OrangeSlice />
 					</div>
 
-					<div class="mt-16 animate-bounce">
-						<Button ele="link" href="#me" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
-					</div>
+					<div id="chalimo" class="absolute bottom-[-20%] right-[40%] w-[20px] h-[500px] bg-black-light border-2 border-white-light rounded-full rotate-45"></div>
 
-				</section>
+					<ul>
+						<li id="astrobuild">
+							<a 
+								class="inline-block w-full h-full bg-white-light
+								p-4 border-4 border-black-light rounded-full 
+								[&_svg_path]:fill-black-light
+								hover:bg-white-dark
+								transition duration-300 ease-out shadow-base" 
+								href="https://astro.build/" 
+								target="_blank"
+								aria-label="astro build"
+							>
+								<AstroBuild />
+							</a>
+						</li>
+						<li id="tailwindcss">
+							<a 
+								class="inline-block w-full h-full bg-white-light
+								p-4 border-4 border-black-light rounded-full 
+								[&_svg_path]:fill-black-light
+								hover:bg-white-dark
+								transition duration-300 ease-out shadow-base" 
+								href="https://tailwindcss.com/"
+								target="_blank"
+								aria-label="tailwind css"
+							>
+								<TailWindCSS />
+							</a>
+						</li>
+						<li id="alpinejs">
+							<a 
+								class="inline-block w-full h-full bg-white-light
+								p-4 border-4 border-black-light rounded-full 
+								[&_svg_path]:fill-black-light
+								hover:bg-white-dark
+								transition duration-300 ease-out shadow-base" 
+								href="https://alpinejs.dev/" 
+								target="_blank"
+								aria-label="alpinejs"
+							>
+								<Alpinejs />
+							</a>
+						</li>
+					</ul>
+				</div>
 
-				<section id="me" class="flex flex-col justify-center items-center overflow-hidden py-24">
+			</section>
 
-					<ul class="max-w-screen-md mx-auto space-y-4">
+			<section id="work" class="flex flex-col justify-center items-center py-40">
+				
+				<div class="text-center text-black-light">
+					
+					<p class="text-medium-1 font-bold capitalize">
+						working on my portfolio
+					</p>
 
-						<li id="aspiring-web-developer" class="flex justify-start gap-4">
-							<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-								<RocketLaunch />
-							</div>
-							<div>
-								<p class="text-base-2 text-black-light font-black capitalize">
-									aspiring web developer
-								</p>
-								<p>
-									with a strong foundation in HTML, CSS, and JavaScript.
-								</p>
+					<ul class="grid grid-cols-3 mt-4">
+						<li class="w-[2.5rem] h-[2.5rem] justify-self-end -mr-5">
+							<div class="origin-center scale-x-[-1]">
+								<div class="animate-spin">
+									<Gear />
+								</div>
 							</div>
 						</li>
-						<li id="passionate" class="flex justify-start gap-4">
-							<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-								<Flame />
-							</div>
-							<div>
-								<p class="text-base-2 text-black-light font-black capitalize">
-									passionate
-								</p>
-								<p>
-									about learning new technologies and staying updated on the latest trends in web development.
-								</p>
+						<li class="w-[4rem] h-[4rem] justify-self-center">
+							<div class="animate-spin">
+								<Gear />
 							</div>
 						</li>
-						<li id="eager-to-leverage-skills" class="flex justify-start gap-4">
-							<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-								<LightningBolt />
-							</div>
-							<div>
-								<p class="text-base-2 text-black-light font-black capitalize">
-									eager to leverage skills
-								</p>
-								<p>
-									in modern web developing tools to build engaging and user-friendly web applications.
-								</p>
+						<li class="w-[2.5rem] h-[2.5rem] justify-self-start self-end -ml-5">
+							<div class="origin-center scale-x-[-1]">
+								<div class="animate-spin">
+									<Gear />
+								</div>
 							</div>
 						</li>
 					</ul>
 
-					<div id="download-resume" class="mt-8 md:mt-14">
-						<Button ele="link" href="/resume.pdf" target="_blank" style="primary-icon-text" size="large-icon-text">
-							<span class="icon">
-								<DownLoad slot="icon" />
+					<a 
+						class="inline-block px-4 mt-4 border-4 border-black-dark rounded-full transition duration-300 ease-out hover:bg-white-dark"
+						href="https://github.com/andrew-saeed/portfolio"
+						aria-label="source-code"
+					>
+						<div class="text-base-1 text-black-dark font-black flex items-center">
+							{`<Source-Code `} 
+							<span class="inline-block px-2 w-[3rem] h-[3rem] [&_svg_path]:fill-black-dark">
+								<Github />
 							</span>
-							<span class="text" slot="text">download Resume</span>
-						</Button>
-					</div>
-				</section>
-
-				<section id="web-stack" class="bg-[linear-gradient(0deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_15%,_rgba(236,232,208,1)_85%,_rgba(254,250,224,1)_100%)] flex flex-col justify-center items-center -mx-2 pt-36 pb-24 overflow-hidden">
-					
-					<div class="relative">
-
-						<div id="orange-slice" class="absolute top-[-20%] left-[-5%] w-[120px] h-[120px] rotate-180 [&_svg_path]:fill-black-light">
-							<OrangeSlice />
+							{`/>`}
 						</div>
-	
-						<div id="chalimo" class="absolute bottom-[-20%] right-[40%] w-[20px] h-[500px] bg-black-light border-2 border-white-light rounded-full rotate-45"></div>
+					</a>
+				</div>
+			</section>
 
-						<ul>
-							<li id="astrobuild">
-								<a 
-									class="inline-block w-full h-full bg-white-light
-									p-4 border-4 border-black-light rounded-full 
-									[&_svg_path]:fill-black-light
-									hover:bg-white-dark
-									transition duration-300 ease-out shadow-base" 
-									href="https://astro.build/" 
-									target="_blank"
-									aria-label="astro build"
-								>
-									<AstroBuild />
-								</a>
-							</li>
-							<li id="tailwindcss">
-								<a 
-									class="inline-block w-full h-full bg-white-light
-									p-4 border-4 border-black-light rounded-full 
-									[&_svg_path]:fill-black-light
-									hover:bg-white-dark
-									transition duration-300 ease-out shadow-base" 
-									href="https://tailwindcss.com/"
-									target="_blank"
-									aria-label="tailwind css"
-								>
-									<TailWindCSS />
-								</a>
-							</li>
-							<li id="alpinejs">
-								<a 
-									class="inline-block w-full h-full bg-white-light
-									p-4 border-4 border-black-light rounded-full 
-									[&_svg_path]:fill-black-light
-									hover:bg-white-dark
-									transition duration-300 ease-out shadow-base" 
-									href="https://alpinejs.dev/" 
-									target="_blank"
-									aria-label="alpinejs"
-								>
-									<Alpinejs />
-								</a>
-							</li>
-						</ul>
-					</div>
+			<section id="dm" class="bg-[linear-gradient(180deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_50%)] flex flex-col justify-center items-center -mx-2 pt-24 pb-32">
+				
+				<div class="w-full px-2">
 
-				</section>
+					<DmForWorkForm />
+				</div>
+			</section>
 
-				<section id="work" class="flex flex-col justify-center items-center py-40">
-					
-					<div class="text-center text-black-light">
-						
-						<p class="text-medium-1 font-bold capitalize">
-							working on my portfolio
-						</p>
+			<footer class="bg-white-dark border-y-2 border-white-light py-2 -mt-12 -mb-2 -mx-2">
 
-						<ul class="grid grid-cols-3 mt-4">
-							<li class="w-[2.5rem] h-[2.5rem] justify-self-end -mr-5">
-								<div class="origin-center scale-x-[-1]">
-									<div class="animate-spin">
-										<Gear />
-									</div>
-								</div>
-							</li>
-							<li class="w-[4rem] h-[4rem] justify-self-center">
-								<div class="animate-spin">
-									<Gear />
-								</div>
-							</li>
-							<li class="w-[2.5rem] h-[2.5rem] justify-self-start self-end -ml-5">
-								<div class="origin-center scale-x-[-1]">
-									<div class="animate-spin">
-										<Gear />
-									</div>
-								</div>
-							</li>
-						</ul>
+				<div class="flex justify-center text-black-light font-black space-x-2">
+					<span class="leading-loose">Source Code</span> 
+					<Button ele="link" href="https://www.github.com/andrew-saeed/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
+					<span class="leading-loose">MIT</span> 
+				</div>
+			</footer>
 
-						<a 
-							class="inline-block px-4 mt-4 border-4 border-black-dark rounded-full transition duration-300 ease-out hover:bg-white-dark"
-							href="https://github.com/andrew-saeed/portfolio"
-							aria-label="source-code"
-						>
-							<div class="text-base-1 text-black-dark font-black flex items-center">
-								{`<Source-Code `} 
-								<span class="inline-block px-2 w-[3rem] h-[3rem] [&_svg_path]:fill-black-dark">
-									<Github />
-								</span>
-								{`/>`}
-							</div>
-						</a>
-					</div>
-				</section>
+		</div>
 
-				<section id="dm" class="bg-[linear-gradient(180deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_50%)] flex flex-col justify-center items-center -mx-2 pt-24 pb-32">
-					
-					<div class="w-full px-2">
+	</main>
 
-						<DmForWorkForm />
-					</div>
-				</section>
+	<NotificationModal slot="notification-modal" />
 
-				<footer class="bg-white-dark border-y-2 border-white-light py-2 -mt-12 -mb-2 -mx-2">
-
-					<div class="flex justify-center text-black-light font-black space-x-2">
-						<span class="leading-loose">Source Code</span> 
-						<Button ele="link" href="https://www.github.com/andrew-saeed/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
-						<span class="leading-loose">MIT</span> 
-					</div>
-				</footer>
-
-			</div>
-
-		</main>
-
-		<NotificationModal />
-	</body>
-</html>
+</Base>

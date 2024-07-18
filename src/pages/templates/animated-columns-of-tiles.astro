@@ -1,0 +1,217 @@
+---
+import Base from "../../layouts/base.astro"
+
+const columns = [
+	{
+		tiles: [
+			{
+				positionClass: 'top-0',
+				tileClass: 'top-tile',
+				tileMaskClass: 'top-tile_mask',
+				bgImageExpr: "bg-[url('/bmw.png')]",
+				bgColor: 'bg-black-dark',
+				logo: 'bmw-logo.svg'
+			},
+			{
+				positionClass: 'bottom-0',
+				tileClass: 'bottom-tile',
+				tileMaskClass: 'bottom-tile_mask',
+				bgImageExpr: "bg-[url('/chevrolet.png')]",
+				bgColor: 'bg-black-light',
+				logo: 'chevrolet-logo.svg'
+			}
+		]
+	},
+	{
+		tiles: [
+			{
+				positionClass: 'top-0',
+				tileClass: 'top-tile',
+				tileMaskClass: 'top-tile_mask',
+				bgImageExpr: "bg-[url('/ford.png')]",
+				bgColor: 'bg-yellow',
+				logo: 'ford-logo.svg'
+			},
+			{
+				positionClass: 'bottom-0',
+				tileClass: 'bottom-tile',
+				tileMaskClass: 'bottom-tile_mask',
+				bgImageExpr: "bg-[url('/kia.png')]",
+				bgColor: 'bg-red',
+				logo: 'kia-logo.svg'
+			}
+		]
+	},
+	{
+		tiles: [
+			{
+				positionClass: 'top-0',
+				tileClass: 'top-tile',
+				tileMaskClass: 'top-tile_mask',
+				bgImageExpr: "bg-[url('/mercedes.png')]",
+				bgColor: 'bg-white-light',
+				logo: 'mercedes-benz-logo.svg'
+			},
+			{
+				positionClass: 'bottom-0',
+				tileClass: 'bottom-tile',
+				tileMaskClass: 'bottom-tile_mask',
+				bgImageExpr: "bg-[url('/mitsubishi.png')]",
+				bgColor: 'bg-white-dark',
+				logo: 'mitsubishi-motors-logo.svg'
+			}
+		]
+	},
+	{
+		tiles: [
+			{
+				positionClass: 'top-0',
+				tileClass: 'top-tile',
+				tileMaskClass: 'top-tile_mask',
+				bgImageExpr: "bg-[url('/peugeot.png')]",
+				bgColor: 'bg-blue-light',
+				logo: 'peugeot-logo.svg'
+			},
+			{
+				positionClass: 'bottom-0',
+				tileClass: 'bottom-tile',
+				tileMaskClass: 'bottom-tile_mask',
+				bgImageExpr: "bg-[url('/tesla.png')]",
+				bgColor: 'bg-blue-dark',
+				logo: 'tesla-logo.svg'
+			}
+		]
+	},
+	{
+		tiles: [
+			{
+				positionClass: 'top-0',
+				tileClass: 'top-tile',
+				tileMaskClass: 'top-tile_mask',
+				bgImageExpr: "bg-[url('/toyota.png')]",
+				bgColor: 'bg-green',
+				logo: 'toyota-logo.svg'
+			},
+			{
+				positionClass: 'bottom-0',
+				tileClass: 'bottom-tile',
+				tileMaskClass: 'bottom-tile_mask',
+				bgImageExpr: "bg-[url('/volvo.png')]",
+				bgColor: 'bg-gray-light',
+				logo: 'volvo-logo.svg'
+			}
+		]
+	}
+]
+---
+<script>
+	import Alpine from "alpinejs"
+	import Swiper from "swiper"
+	import { Navigation } from 'swiper/modules';
+
+	import "swiper/css"
+	import "swiper/css/navigation"
+
+	const swiper = new Swiper('.swiper', {
+		modules: [Navigation],
+		slidesPerView: 5,
+		spaceBetween: 0,
+		breakpoints: {
+			320: {
+				slidesPerView: 1,
+				spaceBetween: 0
+			},
+			768: {
+				slidesPerView: 3
+			},
+			992: {
+				slidesPerView: 4
+			},
+			1200: {
+				slidesPerView: 5
+			}
+		},
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev'
+		}
+	})
+
+	Alpine.data('animatedColumns', () => ({
+		init() {
+
+			this.$el.querySelectorAll<HTMLElement>('.single-column').forEach( column => {
+
+				const topTileMask = column.querySelector<HTMLElement>('.top-tile_mask')!
+				const bottomTileMask = column.querySelector<HTMLElement>('.bottom-tile_mask')!
+
+				if(topTileMask && topTileMask.parentNode) {
+					topTileMask.addEventListener('mouseenter', () => {
+						topTileMask.style.opacity = '0';
+						(topTileMask.parentNode as HTMLElement).style.zIndex = '10';
+						(topTileMask.parentNode as HTMLElement).style.height = '100%';
+					})
+
+					topTileMask.addEventListener('mouseout', () => {
+						topTileMask.style.opacity = '1';
+						(topTileMask.parentNode as HTMLElement).style.height = '220px';
+					})
+				}
+
+				if(bottomTileMask && bottomTileMask.parentNode) {
+					bottomTileMask.addEventListener('mouseenter', () => {
+						bottomTileMask.style.opacity = '0';
+						(topTileMask.parentNode as HTMLElement).style.zIndex = 'unset';
+						(bottomTileMask.parentNode as HTMLElement).style.height = '100%';
+					})
+		
+					bottomTileMask.addEventListener('mouseout', () => {
+						bottomTileMask.style.opacity = '1';
+						(bottomTileMask.parentNode as HTMLElement).style.height = '220px';
+					})
+				}
+			})
+		}
+	}))
+
+	Alpine.start()
+</script>
+<Base>
+	<title>Animated columns of tiles - Web Template</title>
+	<meta name="description" content="Web template for animated columns of tiles with a cool background-images fade-in and fade-out effect">
+	<meta property="og:title" content="Web template for animated columns of tiles">
+	<meta property="og:description" content="Animate columns of tiles up and down. Add a cool background-images fade in/out effect while the tiles are moving">
+	<meta property="og:image" content="https://andrewsaeed.dev/me.png">
+	<meta property="og:url" content="https://andrewsaeed.dev/labs/animated-columns-of-tiles">
+	<meta property="og:type" content="website">
+
+	<main slot="main">
+		
+		<div id="columns-box" class="relative h-svh flex items-center" x-data="animatedColumns">
+
+			<div class="swiper w-full h-[27.5rem] max-w-[13.75rem] md:max-w-[41.25rem] lg:max-w-[55rem] xlg:max-w-[68.75rem]">
+
+				<div class="swiper-wrapper">
+
+					{ columns.map( column => {
+
+						return <div class="swiper-slide">
+							<div class="single-column relative w-[13.75rem] h-[27.5rem] overflow-hidden">
+
+								{ column.tiles.map( tile => {
+
+									return <div class:list={[tile.tileClass, `w-full h-1/2 absolute ${tile.positionClass} left-0`, `${tile.bgImageExpr}`,  "bg-center border border-black-light transition-[height] duration-300 ease-out"]}>
+										<div class:list={[tile.tileMaskClass, "w-full h-full flex items-center justify-center", tile.bgColor, "bg-[length:7.5rem] bg-center bg-no-repeat transition duration-300 ease-out"]} style={`background-image: url('/${tile.logo}');`}></div>
+									</div>
+								}) }
+							</div>
+						</div>
+					}) }
+				</div>
+			</div>
+
+			<div class="swiper-button-prev w-[3.125rem] h-[3.125rem] absolute left-0 after:text-black-dark after:font-bold"></div>
+  			<div class="swiper-button-next w-[3.125rem] h-[3.125rem] absolute right-0 after:text-black-dark after:font-bold"></div>
+		</div>
+	</main>
+</Base>

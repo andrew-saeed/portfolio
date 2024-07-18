@@ -1,0 +1,85 @@
+<style lang="scss" is:global>
+
+:root {
+	scroll-behavior: smooth;
+
+    --white-light: #FEFAE0;
+    --white-dark: #eae6cf;
+    --black-light: #475f2b;
+    --black-dark: #283618;
+    --black-dim: rgb(40, 54, 24, 0.8);
+    --green: #63c498;
+    --red: #ff5e32;
+    --yellow: #FFC801;
+    --blue-light: #0198ef;
+    --blue-dark: #5748AE;
+    --blue-dim: rgba(87, 72, 174, 0.8);
+	--gray-light: #bcbcbf;
+}
+
+/* Fonts */
+.font-mulish {
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--black-light);
+  border-radius: 0rem;
+}
+body::-webkit-scrollbar-track {
+  background-color: var(--white-light);
+  border: 0.1rem solid #ccc;
+}
+body::-webkit-scrollbar-button {
+  background-color: var(--black-dark);
+  border-radius: 0rem;
+}
+body::-webkit-scrollbar-button:hover {
+	background: var(--black-dark);
+}
+body::-webkit-scrollbar-thumb:hover {
+	background: var(--black-dark);
+}
+@supports not selector(::-webkit-scrollbar) {
+
+	* {
+		scrollbar-width: auto;
+		scrollbar-color: var(--white-light) var(--black-dark);
+		scrollbar-gutter: stable both-edges;
+	}
+}
+
+</style>
+
+<script>
+  const htmlTag = document.documentElement
+	htmlTag.lang = 'en'
+</script>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+    <slot />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-white-light text-base text-black-dark font-mulish">
+
+		<slot name="nav" />
+
+		<slot name="main" />
+
+		<slot name="notification-modal" />
+	</body>
+</html>
