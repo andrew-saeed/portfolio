@@ -56,6 +56,14 @@ body::-webkit-scrollbar-thumb:hover {
 	}
 }
 
+/* Fix swiper next prev buttons not showing */
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+  content: "next"!important;
+}
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+  content: "prev"!important;
+}
+
 </style>
 
 <script>
@@ -72,7 +80,7 @@ body::-webkit-scrollbar-thumb:hover {
     <slot />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	</head>
 	<body class="bg-white-light text-base text-black-dark font-mulish">
 
