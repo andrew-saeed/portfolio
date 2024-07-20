@@ -7,6 +7,10 @@
         z-index: 10;
         width: 100%;
         transition: opacity 1.5s ease-out, transform 0.3s ease-out;
+
+        &:not(&:has(.currentBtn)) {
+            opacity: 0;
+        }
         
         ul {
             position: absolute;
@@ -31,6 +35,10 @@
                     &[href='#dm'] {
                         text-transform: uppercase;
                     }
+
+                    &:hover {
+                        background-color: var(--white-dark);
+                    }
                 }
     
                 &:first-of-type {
@@ -47,14 +55,14 @@
                         border-radius: 0 25px 25px 0;
                     }
                 }
-            }
+
+                &.currentBtn {
     
-            .currentBtn {
-    
-                a {
-                    background-color: var(--black-light);
-                    color: white;
-                    font-weight: bold;
+                    a {
+                        background-color: var(--black-light);
+                        color: white;
+                        font-weight: bold;
+                    }
                 }
             }
         }
