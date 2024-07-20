@@ -64,6 +64,15 @@ body::-webkit-scrollbar-thumb:hover {
   content: "prev"!important;
 }
 
+/* Fix DEV svg width height */
+a[aria-label*=dev] {
+  
+  svg {
+    width: 1.5rem!important;
+    height: 1.5rem!important;
+  }
+}
+
 </style>
 
 <script>
