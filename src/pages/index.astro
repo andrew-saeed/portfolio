@@ -224,11 +224,11 @@ import ViewLink from "../icons/viewLink.astro"
 				<div class="w-full max-w-screen-md mx-auto space-y-12">
 
 					<div>
-						<h3 class="text-large font-black capitalize mb-4">projects</h3>
+						<h3 class="text-large text-black-light font-black capitalize mb-4">projects</h3>
 
 						<ul class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(13.75rem,15.625rem))]">
-							<li class="p-2 border border-black-light rounded-lg shadow-base">
-								<h4 class="text-base-1 font-bold capitalize">portfolio</h4>
+							<li class="p-2 border-4 border-black-dark rounded-lg shadow-base">
+								<h4 class="text-base-1 font-black capitalize tracking-wider">my portfolio</h4>
 
 								<p class="mt-4 -mx-2">
 									<img src="/portfolio.png" alt="portfolio">
@@ -245,8 +245,8 @@ import ViewLink from "../icons/viewLink.astro"
 						<h3 class="text-large font-black capitalize mb-4">Templates</h3>
 
 						<ul class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(13.75rem,15.625rem))]">
-							<li class="p-2 border border-black-light rounded-lg shadow-base">
-								<h4 class="text-base-1 font-bold capitalize">Animated tiles</h4>
+							<li class="p-2 border-4 border-black-dark rounded-lg shadow-base">
+								<h4 class="text-base-1 font-black capitalize tracking-wider">Animated tiles</h4>
 
 								<p class="mt-4 -mx-2">
 									<img src="/template-animated-tiles.png" alt="portfolio">
@@ -260,12 +260,17 @@ import ViewLink from "../icons/viewLink.astro"
 						</ul>
 					</div>
 
+					<div class="flex justify-center">
+						<a href='https://ko-fi.com/I2I610RQ2U' target='_blank'><img height='52' style='border:0px;height:52px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' alt='Buy Me a Coffee at ko-fi.com' /></a>
+					</div>
+
 				</div>
 			</section>
 
 			<section id="dm" class="bg-[linear-gradient(180deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_50%)] flex flex-col justify-center items-center -mx-2 pt-24 pb-32">
 				
-				<div class="w-full px-2">
+				<div class="w-full max-w-screen-md mx-auto px-2">
+					<h2 class="text-large font-black first-letter:capitalize mb-8">work with me :)</h2>
 
 					<DmForWorkForm />
 				</div>
