@@ -151,7 +151,7 @@ function dmForWork() {
     
                 try {
                     
-                    await fetch(`${import.meta.env.PUBLIC_SITE_URL}/dm-for-work/`, {
+                    await fetch('/dm-for-work/', {
                         method: 'POST',
                         body: JSON.stringify(result)
                     });
