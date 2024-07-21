@@ -1,6 +1,9 @@
 import Alpine from 'alpinejs'
 import gsap from 'gsap'
 import { z } from 'zod'
+import intersect from '@alpinejs/intersect'
+ 
+Alpine.plugin(intersect)
 
 // NotificationModal component
 function notificationModal() {
@@ -77,7 +80,7 @@ function mainNav() {
                             this.$el.querySelector('li:nth-child(2)')?.classList.add('currentBtn')
                             sectionWebStackTl.play()
                         } else if(entry.target.id === 'work') {
-    
+                            
                             this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
                             this.$el.querySelector('li:nth-child(3)')?.classList.add('currentBtn')
                         } else if(entry.target.id === 'dm') {
@@ -87,7 +90,7 @@ function mainNav() {
                         }
                     }
                 })
-            }, {threshold: 0.9})
+            }, {threshold: 0.5})
     
             const sections:HTMLElement[] = Array.from(document.querySelectorAll<HTMLElement>('section'))
             sections.forEach( section => observer.observe(section))
