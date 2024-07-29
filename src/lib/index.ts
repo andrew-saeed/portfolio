@@ -1,12 +1,9 @@
 import Alpine from 'alpinejs'
 import gsap from 'gsap'
 import { z } from 'zod'
-import intersect from '@alpinejs/intersect'
- 
-Alpine.plugin(intersect)
 
-// NotificationModal component
-function notificationModal() {
+// init NotificationModal component
+function initNotificationModal() {
     Alpine.store('notificationModal', {
         isOpen: false,
         title: '',
@@ -26,8 +23,8 @@ function notificationModal() {
     } as NotificationModal)
 }
 
-// MainNav component
-function mainNav() {
+// init MainNav component
+function initMainNav() {
     // Section me gsap-timeline
     const sectionMeTl = gsap.timeline()
     sectionMeTl.fromTo('#aspiring-web-developer', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
@@ -43,6 +40,13 @@ function mainNav() {
     .fromTo('#alpinejs', {opacity: 0, y: -100, x: -200, rotateZ: -45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#chalimo', {opacity: 0, bottom: '100%', right: '-100%'}, {opacity: 1, bottom: '-20%', right: '40%', duration: 0.6, ease: 'expo'})
     .fromTo('#orange-slice', {opacity: 0, top: '-100%', left: '-40%'}, {opacity: 1, top: '-20%', left: '-5%', duration: 0.6, ease: 'expo'})
+    .pause()
+
+    // Section work gsap-timeline
+    const sectionWorkTl = gsap.timeline()
+    .fromTo('#work .sub-title', { x:-100 }, { x:0, duration:0.3, ease:'expo' })
+    .fromTo('#work .sub-title', { opacity:0 }, { opacity:1, duration:0.9 }, 0)
+    .fromTo('#work .samples-list', { opacity:0, x:300 }, { opacity:1, x:0, duration:0.9, ease:'expo' }, 0)
     .pause()
 
     Alpine.data('MainNav', () => ({
@@ -83,6 +87,7 @@ function mainNav() {
                             
                             this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
                             this.$el.querySelector('li:nth-child(3)')?.classList.add('currentBtn')
+                            sectionWorkTl.play()
                         } else if(entry.target.id === 'dm') {
     
                             this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
@@ -98,8 +103,8 @@ function mainNav() {
     }))
 }
 
-// DmForWork component
-function dmForWork() {
+// init DmForWork component
+function initDmForWork() {
 
     const InputsSchema = z.object({
         subject: z.string().min(1, 'subject is required'),
@@ -168,8 +173,8 @@ function dmForWork() {
     }))
 }
 
-notificationModal()
-mainNav()
-dmForWork()
+initNotificationModal()
+initMainNav()
+initDmForWork()
 
 Alpine.start()
