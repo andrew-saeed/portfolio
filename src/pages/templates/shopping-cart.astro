@@ -1,0 +1,76 @@
+---
+import Base from "../../layouts/base.astro"
+---
+<script>
+	import Alpine from "alpinejs"
+    import axios from "axios"
+
+    type Product = {
+        id: number,
+        thumbnail: string,
+        price: number,
+        title: string
+    }
+
+    type ProductsGetRes = {
+        limit: number,
+        products: Product[],
+        skip: number,
+        total: number
+    }
+
+    type ShoppingCart = {
+        products: Product[],
+        limit: number,
+        page: number,
+        init(): Promise<void>,
+        paginate(): Promise<void>
+    }
+
+	Alpine.data('shoppingCart', ():ShoppingCart => ({
+        products: [],
+        limit: 10,
+        page: 1,
+		async init() {
+			const res = await axios.get<ProductsGetRes>('https://dummyjson.com/products?limit=10&skip=0')
+            this.products = res.data.products
+		},
+        async paginate() {
+            this.page += 1
+            const skip = ( this.page - 1 ) * this.limit;
+			const res = await axios.get<ProductsGetRes>(`https://dummyjson.com/products?limit=${this.limit}&skip=${skip}`)
+            this.products = [...this.products, ...res.data.products]
+        }
+	}))
+
+	Alpine.start()
+</script>
+<Base>
+	<title>Shopping Cart - Web Template</title>
+	<meta name="description" content="A web template for a shopping cart displaying a list of products in a Masonry layout, made with Alpine.js">
+	<meta property="og:title" content="Web template for a shopping cart">
+	<meta property="og:description" content="Shopping cart with an infinite scroll list of products. Add or remove products from the shopping cart and send orders.">
+	<meta property="og:image" content="https://andrewsaeed.dev/me.png">
+	<meta property="og:url" content="https://andrewsaeed.dev/templates/shopping-cart">
+	<meta property="og:type" content="website">
+
+	<main slot="main">
+		
+        <div x-data="shoppingCart">
+            
+            <ul>
+
+                <template x-for="product in products" :key="product.id">
+                    <li>
+                        <h3 x-text="`${product.id} ${product.title}`"></h3>
+                        <div x-text="`$${product.price}`"></div>
+                    </li>
+                </template>
+            </ul>
+
+            <div>
+                <button @click="paginate()">load more</button>
+            </div>
+        </div>
+	</main>
+</Base>
