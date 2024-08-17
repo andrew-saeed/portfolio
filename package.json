@@ -17,6 +17,7 @@
     "@netlify/functions": "^2.8.1",
     "alpinejs": "^3.14.1",
     "astro": "^4.11.3",
+    "axios": "^1.7.4",
     "gsap": "^3.12.5",
     "swiper": "^10.3.1",
     "tailwindcss": "^3.4.4",
