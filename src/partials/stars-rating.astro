@@ -1,0 +1,18 @@
+---
+import FullStar from "../icons/full-star.astro"
+import HalfStar from "../icons/half-star.astro"
+---
+<div class="[&_svg]:fill-yellow [&_svg]:stroke-black-dark">
+    <div class="flex">
+        <div class="flex">
+            <template x-for="x in Math.floor(product.rating)">
+                <div class="h-[1.25rem]">
+                    <FullStar />
+                </div>
+            </template>
+        </div>
+        <div x-show="(product.rating - Math.floor(product.rating)) >= 0.5" class="h-[1.25rem]">
+            <HalfStar />
+        </div>
+    </div>
+</div>
