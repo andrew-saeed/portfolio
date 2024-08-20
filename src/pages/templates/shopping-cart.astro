@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/base.astro"
+import Button from "../../components/button.astro"
 ---
 <script>
 	import Alpine from "alpinejs"
@@ -9,7 +10,9 @@ import Base from "../../layouts/base.astro"
         id: number,
         thumbnail: string,
         price: number,
-        title: string
+        title: string,
+        img: string,
+        rating: number
     }
 
     type ProductsGetRes = {
@@ -58,18 +61,27 @@ import Base from "../../layouts/base.astro"
 		
         <div x-data="shoppingCart">
             
-            <ul>
+            <ul class="grid gap-2 md:grid-cols-3">
 
                 <template x-for="product in products" :key="product.id">
-                    <li>
-                        <h3 x-text="`${product.id} ${product.title}`"></h3>
-                        <div x-text="`$${product.price}`"></div>
+                    <li class="grid p-5 border border-black-dark transition duration-300 ease-in-out hover:bg-white-dark [&:hover_img]:scale-125">
+                        <div class="overflow-hidden">
+                            <img class="transition duration-300 ease-in-out" :src="`${product.thumbnail}`" alt="">
+                        </div>
+                        <div class="grid gap-y-1">
+                            <h3 class="text-base-1 font-bold" x-text="`${product.id} ${product.title}`"></h3>
+                            <div x-text="`${product.rating}`"></div>
+                            <div class="text-base-2 font-bold" x-text="`$${product.price}`"></div>
+                            <div class="self-end">
+                                <Button btnType="button" size="small-text" stretch={true}>add to cart</Button>
+                            </div>
+                        </div>
                     </li>
                 </template>
             </ul>
 
-            <div>
-                <button @click="paginate()">load more</button>
+            <div class="mt-4 p-2" @click="paginate">
+                <Button btnType="button" size="large-text" stretch={true}>load more</Button>
             </div>
         </div>
 	</main>
