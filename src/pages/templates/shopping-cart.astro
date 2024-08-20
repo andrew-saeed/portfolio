@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/base.astro"
 import Button from "../../components/button.astro"
+import StarsRating from "../../partials/stars-rating.astro"
 ---
 <script>
 	import Alpine from "alpinejs"
@@ -61,16 +62,14 @@ import Button from "../../components/button.astro"
 		
         <div x-data="shoppingCart">
             
-            <ul class="grid gap-2 md:grid-cols-3">
+            <ul class="grid gap-2 md:grid-cols-3 p-2">
 
                 <template x-for="product in products" :key="product.id">
-                    <li class="grid p-5 border border-black-dark transition duration-300 ease-in-out hover:bg-white-dark [&:hover_img]:scale-125">
-                        <div class="overflow-hidden">
-                            <img class="transition duration-300 ease-in-out" :src="`${product.thumbnail}`" alt="">
-                        </div>
-                        <div class="grid gap-y-1">
+                    <li class="grid p-5 border border-black-dark transition duration-300 ease-in-out overflow-hidden hover:bg-white-dark [&:hover_img]:scale-125">
+                        <img class="transition duration-300 ease-in-out" :src="`${product.thumbnail}`" alt="">
+                        <div class="grid gap-y-1 mt-6">
                             <h3 class="text-base-1 font-bold" x-text="`${product.id} ${product.title}`"></h3>
-                            <div x-text="`${product.rating}`"></div>
+                            <StarsRating />
                             <div class="text-base-2 font-bold" x-text="`$${product.price}`"></div>
                             <div class="self-end">
                                 <Button btnType="button" size="small-text" stretch={true}>add to cart</Button>
