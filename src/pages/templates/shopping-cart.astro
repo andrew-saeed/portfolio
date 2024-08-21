@@ -2,6 +2,7 @@
 import Base from "../../layouts/base.astro"
 import Button from "../../components/button.astro"
 import StarsRating from "../../partials/stars-rating.astro"
+import Spinner from "../../icons/spinner.astro"
 ---
 <script>
 	import Alpine from "alpinejs"
@@ -24,6 +25,7 @@ import StarsRating from "../../partials/stars-rating.astro"
     }
 
     type ShoppingCart = {
+        loading: boolean,
         products: Product[],
         limit: number,
         page: number,
@@ -32,6 +34,7 @@ import StarsRating from "../../partials/stars-rating.astro"
     }
 
 	Alpine.data('shoppingCart', ():ShoppingCart => ({
+        loading: false,
         products: [],
         limit: 10,
         page: 1,
@@ -40,10 +43,17 @@ import StarsRating from "../../partials/stars-rating.astro"
             this.products = res.data.products
 		},
         async paginate() {
+
+            if(this.loading) return
+
+            this.loading = true
+
             this.page += 1
             const skip = ( this.page - 1 ) * this.limit;
 			const res = await axios.get<ProductsGetRes>(`https://dummyjson.com/products?limit=${this.limit}&skip=${skip}`)
             this.products = [...this.products, ...res.data.products]
+
+            this.loading = false
         }
 	}))
 
@@ -62,11 +72,13 @@ import StarsRating from "../../partials/stars-rating.astro"
 		
         <div x-data="shoppingCart">
             
-            <ul class="grid gap-2 md:grid-cols-3 p-2">
+            <ul class="grid gap-2 md:grid-cols-3 lg:grid-cols-4 p-2">
 
                 <template x-for="product in products" :key="product.id">
-                    <li class="grid p-5 border border-black-dark transition duration-300 ease-in-out overflow-hidden hover:bg-white-dark [&:hover_img]:scale-125">
-                        <img class="transition duration-300 ease-in-out" :src="`${product.thumbnail}`" alt="">
+                    <li class="grid p-2 border border-black-dark transition duration-300 ease-in-out overflow-hidden hover:bg-white-dark [&:hover_img]:scale-125">
+                        <div class="flex justify-center">
+                            <img class="transition duration-300 ease-in-out" :src="`${product.thumbnail}`" alt="">
+                        </div>
                         <div class="grid gap-y-1 mt-6">
                             <h3 class="text-base-1 font-bold" x-text="`${product.id} ${product.title}`"></h3>
                             <StarsRating />
@@ -80,7 +92,12 @@ import StarsRating from "../../partials/stars-rating.astro"
             </ul>
 
             <div class="mt-4 p-2" @click="paginate">
-                <Button btnType="button" size="large-text" stretch={true}>load more</Button>
+                <Button btnType="button" style="primary-icon-text" size="small-icon-text" stretch={true}>
+                    <span class="icon px-2 animate-spin" slot="icon" x-show="loading">
+                        <Spinner />
+                    </span>
+                    <span slot="text">load more</span>
+                </Button>
             </div>
         </div>
 	</main>
