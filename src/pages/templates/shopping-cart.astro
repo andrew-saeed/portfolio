@@ -3,7 +3,53 @@ import Base from "../../layouts/base.astro"
 import Button from "../../components/button.astro"
 import StarsRating from "../../partials/stars-rating.astro"
 import Spinner from "../../icons/spinner.astro"
+import Cart from "../../icons/cart.astro"
 ---
+<style>
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+    @keyframes rubberBand {
+        from {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+        }
+
+        30% {
+            -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+        }
+
+        40% {
+            -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+        }
+
+        50% {
+            -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+        }
+
+        65% {
+            -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+        }
+
+        75% {
+            -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+        }
+
+        to {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+        }
+    }
+    .animate__rubberBand {
+        animation-name: rubberBand;
+    }
+</style>
 <script>
 	import Alpine from "alpinejs"
     import axios from "axios"
@@ -17,6 +63,8 @@ import Spinner from "../../icons/spinner.astro"
         rating: number
     }
 
+    type CartProduct = Product & {amount: number}
+
     type ProductsGetRes = {
         limit: number,
         products: Product[],
@@ -24,7 +72,7 @@ import Spinner from "../../icons/spinner.astro"
         total: number
     }
 
-    type ShoppingCart = {
+    type ShoppingCartProductsList = {
         loading: boolean,
         products: Product[],
         limit: number,
@@ -33,7 +81,41 @@ import Spinner from "../../icons/spinner.astro"
         paginate(): Promise<void>
     }
 
-	Alpine.data('shoppingCart', ():ShoppingCart => ({
+    type ShoppingCartTheCart = {
+        totalPrice: number,
+        totalProducts: number,
+        products: CartProduct[],
+        toggleCartBtn: Element,
+        init(): void,
+        addProduct(product:Product): void
+    }
+
+    const shoppingCartTheCart:ShoppingCartTheCart = {
+        totalPrice: 0,
+        totalProducts: 0,
+        products: [],
+        toggleCartBtn: document.querySelector('.toggleCartBtn')!,
+        init() {
+            this.toggleCartBtn.addEventListener('animationend', () => {
+                this.toggleCartBtn.classList.remove('animate__rubberBand')
+            })
+        },
+        addProduct(newProduct:Product) {
+            this.totalPrice += newProduct.price
+            this.totalProducts += 1
+            const productIndex = this.products.findIndex( product => product.id === newProduct.id)
+            if(productIndex > -1) {
+                this.products[productIndex].amount += 1
+            } else {
+                this.products.push({...newProduct, amount: 1})
+            }
+            this.toggleCartBtn.classList.add('animate__rubberBand')
+        }
+    }
+
+    Alpine.store('shoppingCartTheCart', shoppingCartTheCart)
+
+	Alpine.data('shoppingCartProductsList', ():ShoppingCartProductsList => ({
         loading: false,
         products: [],
         limit: 10,
@@ -70,7 +152,7 @@ import Spinner from "../../icons/spinner.astro"
 
 	<main slot="main">
 		
-        <div x-data="shoppingCart">
+        <div x-data="shoppingCartProductsList">
             
             <ul class="grid gap-2 md:grid-cols-3 lg:grid-cols-4 p-2">
 
@@ -83,7 +165,7 @@ import Spinner from "../../icons/spinner.astro"
                             <h3 class="text-base-1 font-bold" x-text="`${product.id} ${product.title}`"></h3>
                             <StarsRating />
                             <div class="text-base-2 font-bold" x-text="`$${product.price}`"></div>
-                            <div class="self-end">
+                            <div class="self-end" @click="$store.shoppingCartTheCart.addProduct(product)">
                                 <Button btnType="button" size="small-text" stretch={true}>add to cart</Button>
                             </div>
                         </div>
@@ -98,6 +180,20 @@ import Spinner from "../../icons/spinner.astro"
                     </span>
                     <span slot="text">load more</span>
                 </Button>
+            </div>
+
+            <div class="fixed bottom-[1rem] right-0 z-10 p-4 cursor-pointer animate__animated toggleCartBtn">
+                <div class="relative h-4">
+                    <div class="absolute top-0 right-0 z-10 min-w-[1.6875rem] inline-flex justify-center items-center bg-black-dark text-white-light rounded-full">
+                        <span class="text-base-1 px-2" x-text="$store.shoppingCartTheCart.totalProducts"></span>
+                    </div>
+                </div>
+                <div class="relative bg-black-dark p-8 rounded-full">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3.125rem] [&_svg_path]:stroke-white-light [&_svg_circle]:stroke-white-light">
+                        <Cart />
+                    </div>
+                </div>
+                <div class="absolute bottom-[0.1875rem] left-1/2 -translate-x-1/2 bg-black-dark text-white-light px-2 rounded-full" x-text="'$' + $store.shoppingCartTheCart.totalPrice.toFixed(2)"></div>
             </div>
         </div>
 	</main>
