@@ -91,6 +91,7 @@ import Minus from "../../icons/minus.astro"
         totalProducts: number,
         products: CartProduct[],
         cartBtnToggler: Element,
+        currentView: string,
         init(): void,
         addProduct(product:Product): void,
         removeProduct(product:CartProduct): void
@@ -101,6 +102,7 @@ import Minus from "../../icons/minus.astro"
         totalProducts: 0,
         products: [],
         cartBtnToggler: document.querySelector('#cartBtnToggler')!,
+        currentView: 'cart',
         init() {
             this.cartBtnToggler.addEventListener('animationend', () => {
                 this.cartBtnToggler.classList.remove('animate__rubberBand')
@@ -157,7 +159,8 @@ import Minus from "../../icons/minus.astro"
         toggleCartHandler() {
             this.toggleCart = !this.toggleCart
             if(this.toggleCart) {
-                document.body.style.overflowY = 'hidden'
+                document.body.style.overflowY = 'hidden';
+                (Alpine.store('shoppingCartTheCart') as ShoppingCartTheCart).currentView = 'cart';
             } else {
                 document.body.style.overflowY = 'scroll'
             }
@@ -179,7 +182,7 @@ import Minus from "../../icons/minus.astro"
 		
         <div x-data="shoppingCartProductsList">
             
-            <ul class="grid gap-2 md:grid-cols-3 lg:grid-cols-4 p-2">
+            <ul id="productsList" class="grid gap-2 md:grid-cols-3 lg:grid-cols-4 p-2">
 
                 <template x-for="product in products" :key="product.id">
                     <li class="grid p-2 border border-black-dark transition duration-300 ease-in-out overflow-hidden hover:bg-white-dark [&:hover_img]:scale-125">
@@ -198,7 +201,7 @@ import Minus from "../../icons/minus.astro"
                 </template>
             </ul>
 
-            <div class="mt-4 p-2" @click="paginate">
+            <div id="paginateBtn" class="mt-4 p-2" @click="paginate">
                 <Button btnType="button" style="primary-icon-text" size="small-icon-text" stretch={true}>
                     <span class="icon px-2 animate-spin" slot="icon" x-show="loading">
                         <Spinner />
@@ -207,8 +210,7 @@ import Minus from "../../icons/minus.astro"
                 </Button>
             </div>
 
-            <div 
-                id="cartBtnToggler" 
+            <div id="cartBtnToggler" 
                 class="fixed bottom-[1rem] right-0 z-10 p-4 cursor-pointer animate__animated"
                 @click="toggleCartHandler"
             >
@@ -225,15 +227,14 @@ import Minus from "../../icons/minus.astro"
                 <div class="absolute bottom-[0.1875rem] left-1/2 -translate-x-1/2 bg-black-dark text-white-light px-2 rounded-full" x-text="'$' + $store.shoppingCartTheCart.totalPrice.toFixed(2)"></div>
             </div>
 
-            <div
-                id="theCart"
+            <div id="theCart"
                 class="fixed bottom-0 left-0 z-20 w-full h-full bg-white-dark text-black-light"
                 x-show="toggleCart"
                 x-transition
             >
                 <div class="grid grid-rows-[min-content_1fr] h-full max-w-screen-md mx-auto p-2">
                     <div class="grid grid-cols-[1fr_min-content] items-center pb-4">                        
-                        <div x-show="$store.shoppingCartTheCart.products.length > 0">
+                        <div x-show="$store.shoppingCartTheCart.products.length > 0 && $store.shoppingCartTheCart.currentView === 'cart'" @click="$store.shoppingCartTheCart.currentView = 'order'">
                             <Button btnType="button" style="primary-text" size="small-text">
                                 <span x-text="`submit order $${$store.shoppingCartTheCart.totalPrice.toFixed(2)}`" class="capitalize"></span>
                             </Button>
@@ -249,7 +250,7 @@ import Minus from "../../icons/minus.astro"
                             the cart is empty
                         </div>
                     </template>
-                    <template x-if="$store.shoppingCartTheCart.products.length > 0">
+                    <template x-if="$store.shoppingCartTheCart.products.length > 0 && $store.shoppingCartTheCart.currentView === 'cart'">
                         <ul class="h-full overflow-y-auto space-y-8">
                             <template x-for="product in $store.shoppingCartTheCart.products" :key="product.id">
                                 <li class="flex">
@@ -276,6 +277,18 @@ import Minus from "../../icons/minus.astro"
                                 </li>
                             </template>
                         </ul>
+                    </template>
+                    <template x-if="$store.shoppingCartTheCart.currentView === 'order'">
+                        <div id="theOrderPage" class="animate__animated animate__rubberBand h-full flex flex-col justify-center items-center gap-y-2 text-base-2 capitalize">
+                            <div>
+                                order has been sent
+                            </div>
+                            <div @click="$store.shoppingCartTheCart.currentView = 'cart'">
+                                <Button btnType="button" style="primary-text" size="small-text">
+                                    back to cart
+                                </Button>
+                            </div>
+                        </div>
                     </template>
                 </div>
             </div>
