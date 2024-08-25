@@ -4,6 +4,9 @@ import Button from "../../components/button.astro"
 import StarsRating from "../../partials/stars-rating.astro"
 import Spinner from "../../icons/spinner.astro"
 import Cart from "../../icons/cart.astro"
+import CloseCircle from "../../icons/close-circle-.astro"
+import Plus from "../../icons/plus.astro"
+import Minus from "../../icons/minus.astro"
 ---
 <style>
     .animate__animated {
@@ -73,31 +76,34 @@ import Cart from "../../icons/cart.astro"
     }
 
     type ShoppingCartProductsList = {
+        toggleCart: boolean,
         loading: boolean,
         products: Product[],
         limit: number,
         page: number,
         init(): Promise<void>,
-        paginate(): Promise<void>
+        paginate(): Promise<void>,
+        toggleCartHandler(): void
     }
 
     type ShoppingCartTheCart = {
         totalPrice: number,
         totalProducts: number,
         products: CartProduct[],
-        toggleCartBtn: Element,
+        cartBtnToggler: Element,
         init(): void,
-        addProduct(product:Product): void
+        addProduct(product:Product): void,
+        removeProduct(product:CartProduct): void
     }
 
     const shoppingCartTheCart:ShoppingCartTheCart = {
         totalPrice: 0,
         totalProducts: 0,
         products: [],
-        toggleCartBtn: document.querySelector('.toggleCartBtn')!,
+        cartBtnToggler: document.querySelector('#cartBtnToggler')!,
         init() {
-            this.toggleCartBtn.addEventListener('animationend', () => {
-                this.toggleCartBtn.classList.remove('animate__rubberBand')
+            this.cartBtnToggler.addEventListener('animationend', () => {
+                this.cartBtnToggler.classList.remove('animate__rubberBand')
             })
         },
         addProduct(newProduct:Product) {
@@ -109,13 +115,24 @@ import Cart from "../../icons/cart.astro"
             } else {
                 this.products.push({...newProduct, amount: 1})
             }
-            this.toggleCartBtn.classList.add('animate__rubberBand')
+            this.cartBtnToggler.classList.add('animate__rubberBand')
+        },
+        removeProduct(productToRemove:CartProduct) {
+            this.totalPrice = Math.round((this.totalPrice - productToRemove.price) * 100) / 100;
+            this.totalProducts -= 1
+            const productToRemoveIndex = this.products.findIndex( product => product.id === productToRemove.id)
+            if(productToRemove.amount === 1) {
+                this.products.splice(productToRemoveIndex, 1)
+            } else {
+                this.products[productToRemoveIndex].amount -= 1
+            }
         }
     }
 
     Alpine.store('shoppingCartTheCart', shoppingCartTheCart)
 
 	Alpine.data('shoppingCartProductsList', ():ShoppingCartProductsList => ({
+        toggleCart: false,
         loading: false,
         products: [],
         limit: 10,
@@ -136,6 +153,14 @@ import Cart from "../../icons/cart.astro"
             this.products = [...this.products, ...res.data.products]
 
             this.loading = false
+        },
+        toggleCartHandler() {
+            this.toggleCart = !this.toggleCart
+            if(this.toggleCart) {
+                document.body.style.overflowY = 'hidden'
+            } else {
+                document.body.style.overflowY = 'scroll'
+            }
         }
 	}))
 
@@ -182,7 +207,11 @@ import Cart from "../../icons/cart.astro"
                 </Button>
             </div>
 
-            <div class="fixed bottom-[1rem] right-0 z-10 p-4 cursor-pointer animate__animated toggleCartBtn">
+            <div 
+                id="cartBtnToggler" 
+                class="fixed bottom-[1rem] right-0 z-10 p-4 cursor-pointer animate__animated"
+                @click="toggleCartHandler"
+            >
                 <div class="relative h-4">
                     <div class="absolute top-0 right-0 z-10 min-w-[1.6875rem] inline-flex justify-center items-center bg-black-dark text-white-light rounded-full">
                         <span class="text-base-1 px-2" x-text="$store.shoppingCartTheCart.totalProducts"></span>
@@ -194,6 +223,61 @@ import Cart from "../../icons/cart.astro"
                     </div>
                 </div>
                 <div class="absolute bottom-[0.1875rem] left-1/2 -translate-x-1/2 bg-black-dark text-white-light px-2 rounded-full" x-text="'$' + $store.shoppingCartTheCart.totalPrice.toFixed(2)"></div>
+            </div>
+
+            <div
+                id="theCart"
+                class="fixed bottom-0 left-0 z-20 w-full h-full bg-white-dark text-black-light"
+                x-show="toggleCart"
+                x-transition
+            >
+                <div class="grid grid-rows-[min-content_1fr] h-full max-w-screen-md mx-auto p-2">
+                    <div class="grid grid-cols-[1fr_min-content] items-center pb-4">                        
+                        <div x-show="$store.shoppingCartTheCart.products.length > 0">
+                            <Button btnType="button" style="primary-text" size="small-text">
+                                <span x-text="`submit order $${$store.shoppingCartTheCart.totalPrice.toFixed(2)}`" class="capitalize"></span>
+                            </Button>
+                        </div>
+                        <div class="flex justify-end">
+                            <div class="w-[3.125rem] cursor-pointer [&_svg]:fill-white-light" @click="toggleCartHandler">
+                                <CloseCircle />
+                            </div>
+                        </div>
+                    </div>
+                    <template x-if="$store.shoppingCartTheCart.products.length === 0">
+                        <div class="h-full flex justify-center items-center text-base-2 capitalize">
+                            the cart is empty
+                        </div>
+                    </template>
+                    <template x-if="$store.shoppingCartTheCart.products.length > 0">
+                        <ul class="h-full overflow-y-auto space-y-8">
+                            <template x-for="product in $store.shoppingCartTheCart.products" :key="product.id">
+                                <li class="flex">
+                                    <img :src="product.thumbnail" alt="" class="h-[6.25rem]">
+                                    <div class="ml-2 space-y-1">
+                                        <div class="flex">
+                                            <div class="mr-2" @click="$store.shoppingCartTheCart.addProduct(product)">
+                                                <Button btnType="button" style="primary-icon" size="small-icon">
+                                                    <Plus />
+                                                </Button>
+                                            </div>
+                                            <div @click="$store.shoppingCartTheCart.removeProduct(product)">
+                                                <Button btnType="button" style="primary-icon" size="small-icon">
+                                                    <Minus />
+                                                </Button>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <span class="mr-2" x-text="`${product.amount}x`"></span>
+                                            <h3 class="font-black" x-text="product.title"></h3>
+                                        </div>
+                                        <div class="font-bold" x-text="`$${(product.amount * product.price).toFixed(2)}`"></div>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                </div>
             </div>
         </div>
 	</main>
