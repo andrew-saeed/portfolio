@@ -140,8 +140,10 @@ import Minus from "../../icons/minus.astro"
         limit: 10,
         page: 1,
 		async init() {
+            this.loading = true
 			const res = await axios.get<ProductsGetRes>('https://dummyjson.com/products?limit=10&skip=0')
             this.products = res.data.products
+            this.loading = false
 		},
         async paginate() {
 
@@ -180,9 +182,9 @@ import Minus from "../../icons/minus.astro"
 
 	<main slot="main">
 		
-        <div x-data="shoppingCartProductsList">
+        <div class="max-w-screen-md mx-auto" x-data="shoppingCartProductsList">
             
-            <ul id="productsList" class="grid gap-2 md:grid-cols-3 lg:grid-cols-4 p-2">
+            <ul id="productsList" class="grid gap-2 md:grid-cols-3 p-2">
 
                 <template x-for="product in products" :key="product.id">
                     <li class="grid p-2 border border-black-dark transition duration-300 ease-in-out overflow-hidden hover:bg-white-dark [&:hover_img]:scale-125">
@@ -211,26 +213,28 @@ import Minus from "../../icons/minus.astro"
             </div>
 
             <div id="cartBtnToggler" 
-                class="fixed bottom-[1rem] right-0 z-10 p-4 cursor-pointer animate__animated"
+                class="fixed bottom-[1rem] right-0 z-10 p-6 cursor-pointer animate__animated"
                 @click="toggleCartHandler"
             >
-                <div class="relative h-4">
-                    <div class="absolute top-0 right-0 z-10 min-w-[1.6875rem] inline-flex justify-center items-center bg-black-dark text-white-light rounded-full">
+                <div class="relative">
+                    <div class="absolute top-0 right-0 z-10 min-w-[1.6875rem] inline-flex justify-center items-center bg-white-dark text-black-dark border-4 border-black-dark rounded-full -translate-y-1/2">
                         <span class="text-base-1 px-2" x-text="$store.shoppingCartTheCart.totalProducts"></span>
                     </div>
-                </div>
-                <div class="relative bg-black-dark p-8 rounded-full">
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3.125rem] [&_svg_path]:stroke-white-light [&_svg_circle]:stroke-white-light">
-                        <Cart />
+                    <div class="bg-black-dark p-8 rounded-full">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3.125rem] [&_svg_path]:stroke-white-light [&_svg_circle]:stroke-white-light">
+                            <Cart />
+                        </div>
                     </div>
+                    <div class="absolute bottom-1/2 -left-4 -translate-x-1/2 translate-y-1/2 bg-black-dark text-white-dark uppercase font-black px-2 rounded-full">open</div>
+                    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white-dark text-black-dark px-2 border-4 border-black-dark rounded-full" x-text="'$' + $store.shoppingCartTheCart.totalPrice.toFixed(2)"></div>
                 </div>
-                <div class="absolute bottom-[0.1875rem] left-1/2 -translate-x-1/2 bg-black-dark text-white-light px-2 rounded-full" x-text="'$' + $store.shoppingCartTheCart.totalPrice.toFixed(2)"></div>
             </div>
 
             <div id="theCart"
                 class="fixed bottom-0 left-0 z-20 w-full h-full bg-white-dark text-black-light"
                 x-show="toggleCart"
                 x-transition
+                x-cloak
             >
                 <div class="grid grid-rows-[min-content_1fr] h-full max-w-screen-md mx-auto p-2">
                     <div class="grid grid-cols-[1fr_min-content] items-center pb-4">                        

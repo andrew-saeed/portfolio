@@ -227,15 +227,27 @@ import ViewLink from "../icons/viewLink.astro"
 						<h2 class="sub-title relative text-large text-black-light font-black capitalize mb-4">projects</h2>
 
 						<ul class="samples-list relative grid gap-4 grid-cols-[repeat(auto-fit,minmax(13.75rem,15.625rem))]">
-							<li class="p-2 border-4 border-black-dark rounded-lg shadow-base">
+							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
 								<h3 class="text-base-1 font-black capitalize tracking-wider">my portfolio</h3>
 
-								<p class="mt-4 -mx-2">
+								<p class="-mx-2">
 									<img src="/portfolio.webp" alt="portfolio">
 								</p>
 
-								<div class="flex justify-end mt-4 space-x-2">
-									<Button ele="link" href="https://github.com/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="X"><Github /></Button>
+								<div class="flex justify-end items-end space-x-2">
+									<Button ele="link" href="https://github.com/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="portfolio source code"><Github /></Button>
+								</div>
+							</li>
+							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
+								<h3 class="text-base-1 font-black capitalize tracking-wider">images sniper chrome extension</h3>
+
+								<p class="-mx-2">
+									<img src="/images-sniper.webp" alt="images sniper">
+								</p>
+
+								<div class="flex justify-end items-end space-x-2">
+									<Button ele="link" href="https://chromewebstore.google.com/detail/images-sniper/npnednigbhjjgbaflkcjjmfbfnmifjep" style="primary-icon" size="small-icon" target="_blank" ariaLabel="images sniper chrome extension"><ViewLink /></Button>
+									<Button ele="link" href="https://github.com/andrew-saeed/images-sniper-chrome-extension" style="primary-icon" size="small-icon" target="_blank" ariaLabel="images sniper chrome extension source code"><Github /></Button>
 								</div>
 							</li>
 						</ul>
@@ -246,7 +258,7 @@ import ViewLink from "../icons/viewLink.astro"
 
 						<ul class="samples-list relative grid gap-4 grid-cols-[repeat(auto-fit,minmax(13.75rem,15.625rem))]">
 							<li class="p-2 border-4 border-black-dark rounded-lg shadow-base">
-								<h3 class="text-base-1 font-black capitalize tracking-wider">Animated tiles</h3>
+								<h3 class="text-base-1 font-black capitalize tracking-wider">animated tiles</h3>
 
 								<p class="mt-4 -mx-2">
 									<img src="/template-animated-tiles.webp" alt="portfolio">
@@ -255,6 +267,18 @@ import ViewLink from "../icons/viewLink.astro"
 								<div class="flex justify-end mt-4 space-x-2">
 									<Button ele="link" href="/templates/animated-columns-of-tiles" style="primary-icon" size="small-icon" target="_blank" ariaLabel="open animated tiles template"><ViewLink /></Button>
 									<Button ele="link" href="https://github.com/andrew-saeed/portfolio/blob/main/src/pages/templates/animated-columns-of-tiles.astro" style="primary-icon" size="small-icon" target="_blank" ariaLabel="source code"><Github /></Button>
+								</div>
+							</li>
+							<li class="p-2 border-4 border-black-dark rounded-lg shadow-base">
+								<h3 class="text-base-1 font-black capitalize tracking-wider">shopping cart</h3>
+
+								<p class="mt-4 -mx-2">
+									<img src="/template-shopping-cart.webp" alt="portfolio">
+								</p>
+
+								<div class="flex justify-end mt-4 space-x-2">
+									<Button ele="link" href="/templates/shopping-cart" style="primary-icon" size="small-icon" target="_blank" ariaLabel="open shopping cart template"><ViewLink /></Button>
+									<Button ele="link" href="https://github.com/andrew-saeed/portfolio/blob/main/src/pages/templates/shopping-cart.astro" style="primary-icon" size="small-icon" target="_blank" ariaLabel="source code"><Github /></Button>
 								</div>
 							</li>
 						</ul>
