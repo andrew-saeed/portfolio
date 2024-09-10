@@ -25,8 +25,43 @@ function initNotificationModal() {
 
 // init MainNav component
 function initMainNav() {
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const mainNav = document.querySelector<HTMLElement>('#main-nav')!
+
+    //Section top-main gsap-timeline
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: '#top-main',
+            start: 'top center',
+            end: 'bottom center',
+            onEnterBack:()=>{
+                mainNav.style.opacity = '0'
+                mainNav.style.transform = 'translateY(-100px)'
+            }
+        }
+    })
+
     // Section me gsap-timeline
-    const sectionMeTl = gsap.timeline()
+    const sectionMeTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#me',
+            start: 'top center',
+            end: 'bottom center',
+            onEnter:()=>{
+                mainNav.style.opacity = '1'
+                mainNav.style.transform = 'translateY(0)'
+                mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                mainNav.querySelector('li:nth-child(1)')?.classList.add('currentBtn')
+                sectionMeTl.play()
+            },
+            onEnterBack:()=>{
+                mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                mainNav.querySelector('li:nth-child(1)')?.classList.add('currentBtn')
+            }
+        }
+    })
     sectionMeTl.fromTo('#aspiring-web-developer', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#passionate', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#eager-to-leverage-skills', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
@@ -34,7 +69,22 @@ function initMainNav() {
     .pause()
 
     // Section web-stack gsap-timeline
-    const sectionWebStackTl = gsap.timeline()
+    const sectionWebStackTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#web-stack',
+            start: 'top center',
+            end: 'bottom center',
+            onEnter:()=>{
+                mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                mainNav.querySelector('li:nth-child(2)')?.classList.add('currentBtn')
+                sectionWebStackTl.play()
+            },
+            onEnterBack:()=>{
+                mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                mainNav.querySelector('li:nth-child(2)')?.classList.add('currentBtn')
+            }
+        }
+    })
     sectionWebStackTl.fromTo('#astrobuild', {opacity: 0, y: -100, x: -200, rotateZ: -45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#tailwindcss', {opacity: 0, y: -100, x: 200, rotateZ: 45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#alpinejs', {opacity: 0, y: -100, x: -200, rotateZ: -45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
@@ -43,64 +93,47 @@ function initMainNav() {
     .pause()
 
     // Section work gsap-timeline
-    const sectionWorkTl = gsap.timeline()
-    .fromTo('#work .sub-title', { x:-100 }, { x:0, duration:0.3, ease:'expo' })
+    const sectionWorkTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#work',
+            start: 'top center',
+            end: 'bottom center',
+            onEnter:()=>{
+                mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                mainNav.querySelector('li:nth-child(3)')?.classList.add('currentBtn')
+                sectionWorkTl.play()
+            },onEnterBack:()=>{
+                mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                mainNav.querySelector('li:nth-child(3)')?.classList.add('currentBtn')
+            }
+        }
+    })
+    sectionWorkTl.fromTo('#work .sub-title', { x:-100 }, { x:0, duration:0.3, ease:'expo' })
     .fromTo('#work .sub-title', { opacity:0 }, { opacity:1, duration:0.9 }, 0)
     .fromTo('#work .samples-list', { opacity:0, x:300 }, { opacity:1, x:0, duration:0.9, ease:'expo' }, 0)
     .pause()
 
-    Alpine.data('MainNav', () => ({
-        init() {
-    
-            this.$el.querySelectorAll('li').forEach( li => {
-    
-                li.addEventListener('click', () => {
-                    
-                    this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
-                    li.classList.add('currentBtn')
-                })
-            })
-    
-            const observer = new IntersectionObserver(entries => {
-                
-                entries.forEach(entry => {
-                    
-                    if (entry.isIntersecting) {
-                        
-                        if(entry.target.id === 'top-main') {
-    
-                            this.$el.style.opacity = '0'
-                            this.$el.style.transform = 'translateY(-100px)'
-                        } else if(entry.target.id === 'me') {
-    
-                            this.$el.style.opacity = '1'
-                            this.$el.style.transform = 'translateY(0)'
-                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
-                            this.$el.querySelector('li:nth-child(1)')?.classList.add('currentBtn')
-                            sectionMeTl.play()
-                        } else if(entry.target.id === 'web-stack') {
-    
-                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
-                            this.$el.querySelector('li:nth-child(2)')?.classList.add('currentBtn')
-                            sectionWebStackTl.play()
-                        } else if(entry.target.id === 'work') {
-                            
-                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
-                            this.$el.querySelector('li:nth-child(3)')?.classList.add('currentBtn')
-                            sectionWorkTl.play()
-                        } else if(entry.target.id === 'dm') {
-    
-                            this.$el.querySelector('.currentBtn')?.classList.remove('currentBtn')
-                            this.$el.querySelector('li:nth-child(4)')?.classList.add('currentBtn')
-                        }
-                    }
-                })
-            }, {threshold: 0.5})
-    
-            const sections:HTMLElement[] = Array.from(document.querySelectorAll<HTMLElement>('section'))
-            sections.forEach( section => observer.observe(section))
+    //Section dm gsap-timeline
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: '#dm',
+            start: 'top center',
+            end: 'bottom center',
+            onEnter:()=>{
+                mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+                mainNav.querySelector('li:nth-child(4)')?.classList.add('currentBtn')
+            }
         }
-    }))
+    })
+
+    mainNav.querySelectorAll('li').forEach( li => {
+
+        li.addEventListener('click', () => {
+            
+            mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
+            li.classList.add('currentBtn')
+        })
+    })
 }
 
 // init DmForWork component

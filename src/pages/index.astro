@@ -33,6 +33,7 @@ import ViewLink from "../icons/viewLink.astro"
 	<meta property="og:image" content="https://andrewsaeed.dev/me.png">
 	<meta property="og:url" content="https://andrewsaeed.dev">
 	<meta property="og:type" content="website">
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<Nav slot="nav" />
 
@@ -221,7 +222,7 @@ import ViewLink from "../icons/viewLink.astro"
 					</li>
 				</ul>
 				
-				<div class="w-full max-w-screen-md mx-auto space-y-12">
+				<div class="w-full max-w-screen-lg mx-auto space-y-12">
 
 					<div id="work-projects">
 						<h2 class="sub-title relative text-large text-black-light font-black capitalize mb-4">projects</h2>
@@ -257,28 +258,40 @@ import ViewLink from "../icons/viewLink.astro"
 						<h2 class="sub-title relative text-large text-black-light font-black capitalize mb-4">Templates</h2>
 
 						<ul class="samples-list relative grid gap-4 grid-cols-[repeat(auto-fit,minmax(13.75rem,15.625rem))]">
-							<li class="p-2 border-4 border-black-dark rounded-lg shadow-base">
+							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
 								<h3 class="text-base-1 font-black capitalize tracking-wider">animated tiles</h3>
 
-								<p class="mt-4 -mx-2">
+								<p class="-mx-2">
 									<img src="/template-animated-tiles.webp" alt="portfolio">
 								</p>
 
-								<div class="flex justify-end mt-4 space-x-2">
-									<Button ele="link" href="/templates/animated-columns-of-tiles" style="primary-icon" size="small-icon" target="_blank" ariaLabel="open animated tiles template"><ViewLink /></Button>
-									<Button ele="link" href="https://github.com/andrew-saeed/portfolio/blob/main/src/pages/templates/animated-columns-of-tiles.astro" style="primary-icon" size="small-icon" target="_blank" ariaLabel="source code"><Github /></Button>
+								<div class="flex justify-end items-end space-x-2">
+									<Button ele="link" href="/templates/animated-columns-of-tiles" style="primary-icon" size="small-icon" target="_blank" ariaLabel="animated tiles template"><ViewLink /></Button>
+									<Button ele="link" href="https://github.com/andrew-saeed/portfolio/blob/main/src/pages/templates/animated-columns-of-tiles.astro" style="primary-icon" size="small-icon" target="_blank" ariaLabel="animated tiles source code"><Github /></Button>
 								</div>
 							</li>
-							<li class="p-2 border-4 border-black-dark rounded-lg shadow-base">
+							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
 								<h3 class="text-base-1 font-black capitalize tracking-wider">shopping cart</h3>
 
-								<p class="mt-4 -mx-2">
+								<p class="-mx-2">
 									<img src="/template-shopping-cart.webp" alt="portfolio">
 								</p>
 
-								<div class="flex justify-end mt-4 space-x-2">
-									<Button ele="link" href="/templates/shopping-cart" style="primary-icon" size="small-icon" target="_blank" ariaLabel="open shopping cart template"><ViewLink /></Button>
-									<Button ele="link" href="https://github.com/andrew-saeed/portfolio/blob/main/src/pages/templates/shopping-cart.astro" style="primary-icon" size="small-icon" target="_blank" ariaLabel="source code"><Github /></Button>
+								<div class="flex justify-end items-end space-x-2">
+									<Button ele="link" href="/templates/shopping-cart" style="primary-icon" size="small-icon" target="_blank" ariaLabel="shopping cart template"><ViewLink /></Button>
+									<Button ele="link" href="https://github.com/andrew-saeed/portfolio/blob/main/src/pages/templates/shopping-cart.astro" style="primary-icon" size="small-icon" target="_blank" ariaLabel="shopping cart source code"><Github /></Button>
+								</div>
+							</li>
+							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
+								<h3 class="text-base-1 font-black capitalize tracking-wider">scroll based animations</h3>
+
+								<p class="-mx-2">
+									<img src="/template-scroll-based-animations.webp" alt="scroll based animations">
+								</p>
+
+								<div class="flex justify-end items-end space-x-2">
+									<Button ele="link" href="/templates/scroll-based-animations" style="primary-icon" size="small-icon" target="_blank" ariaLabel="scroll based animations template"><ViewLink /></Button>
+									<Button ele="link" href="https://github.com/andrew-saeed/portfolio/blob/main/src/pages/templates/scroll-based-animations.astro" style="primary-icon" size="small-icon" target="_blank" ariaLabel="scroll based animations source code"><Github /></Button>
 								</div>
 							</li>
 						</ul>
