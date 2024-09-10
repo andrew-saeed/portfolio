@@ -1,0 +1,179 @@
+---
+import Base from "../../layouts/base.astro"
+---
+<style>
+    section {
+        h1 {
+            &.rtlAnimation {
+                transform: translateX(10%);
+            }
+            &.ltrAnimation {
+                transform: translateX(-10%);
+            }
+        }
+    }
+</style>
+<script>
+    import gsap, {Linear} from 'gsap'
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const scrollBoxBg = document.querySelector<HTMLElement>('#scroll-box-bg')!
+
+    const firstPath = document.querySelector<SVGGeometryElement>('path#first-path')!
+    firstPath.style.strokeDasharray = `${Math.round(firstPath.getTotalLength())}`
+    firstPath.style.strokeDashoffset = `${Math.round(firstPath.getTotalLength())}`
+    const firstPathTimeLine = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#scroll-sections',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true
+        }
+    })
+	firstPathTimeLine.to(firstPath, {strokeDashoffset: 0, ease:Linear.easeNone})
+
+    const secondPath = document.querySelector<SVGGeometryElement>('path#second-path')!
+    secondPath.style.strokeDasharray = `${Math.round(secondPath.getTotalLength())}`
+    secondPath.style.strokeDashoffset = `${Math.round(secondPath.getTotalLength())}`
+    const secondPathTimeLine = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#scroll-sections',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true
+        }
+    })
+	secondPathTimeLine.to(secondPath, {strokeDashoffset: 0, ease:Linear.easeNone})
+
+    const section1TimeLine = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#section1',
+            start: 'top center',
+            end: 'bottom center',
+            toggleActions: 'play pause restart reset',
+            onEnter:() => {
+                scrollBoxBg.style.backgroundColor = 'black'
+            },
+            onEnterBack:()=> {
+                scrollBoxBg.style.backgroundColor = 'black'
+            }
+        }
+    })
+    section1TimeLine.to('#section1 h1', {translateX: '0%', color: 'white', duration: 0.1, ease: 'expo'})
+    
+    const section2TimeLine = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#section2',
+            start: 'top center',
+            end: 'bottom center',
+            toggleActions: 'play pause restart reset',
+            onEnter:() => {
+                scrollBoxBg.style.backgroundColor = 'green'
+            },
+            onEnterBack:()=> {
+                scrollBoxBg.style.backgroundColor = 'green'
+            }
+        }
+    })
+	section2TimeLine.to('#section2 h1', {translateX: '0%', color: 'white', duration: 0.1, ease: 'expo'})
+
+    const section3TimeLine = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#section3',
+            start: 'top center',
+            end: 'bottom center',
+            toggleActions: 'play pause restart reset',
+            onEnter:() => {
+                scrollBoxBg.style.backgroundColor = 'blue'
+            },
+            onEnterBack:()=> {
+                scrollBoxBg.style.backgroundColor = 'blue'
+            }
+        }
+    })
+	section3TimeLine.to('#section3 h1', {translateX: '0%', color: 'white', duration: 0.1, ease: 'expo'})
+
+    const section4TimeLine = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#section4',
+            start: 'top center',
+            end: 'bottom center',
+            toggleActions: 'play pause restart reset',
+            onEnter:() => {
+                scrollBoxBg.style.backgroundColor = 'red'
+            },
+            onEnterBack:()=> {
+                scrollBoxBg.style.backgroundColor = 'red'
+            }
+        }
+    })
+	section4TimeLine.to('#section4 h1', {translateX: '0%', color: 'white', duration: 0.1, ease: 'expo'})
+
+    const section5TimeLine = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#section5',
+            start: 'top center',
+            end: 'bottom center',
+            toggleActions: 'play pause restart reset',
+            onEnter:() => {
+                scrollBoxBg.style.backgroundColor = 'deeppink'
+            },
+            onEnterBack:()=> {
+                scrollBoxBg.style.backgroundColor = 'deeppink'
+            }
+        }
+    })
+	section5TimeLine.to('#section5 h1', {translateX: '0%', color: 'white', duration: 0.1, ease: 'expo'})
+</script>
+<Base>
+	<title>Scroll Based Animations - Web Template</title>
+	<meta name="description" content="Web template for awesome animations that play while scrolling the web page">
+	<meta property="og:title" content="Web template for scroll based animations">
+	<meta property="og:description" content="Scroll based animations that play while scrolling the web page">
+	<meta property="og:image" content="https://andrewsaeed.dev/me.png">
+	<meta property="og:url" content="https://andrewsaeed.dev/templates/scroll-based-animations">
+	<meta property="og:type" content="website">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<main slot="main">
+        <div id="scroll-box" 
+            class="relative
+            [&_section]:h-svh 
+            [&_section]:flex [&_section]:justify-center [&_section]:items-center 
+            [&_section]:overflow-hidden
+            [&_section_h1]:w-full
+            [&_section_h1]:text-xlarge [&_section_h1]:font-bold [&_section_h1]:text-center
+            [&_section_h1]:transition [&_section_h1]:duration-1000 [&_section_h1]:ease-in-out"
+        >
+            <div id="scroll-box-bg" class="fixed top-0 left-0 z-0 w-full h-svh transition-colors duration-300 ease-in-out"></div>
+            <div class="fixed top-0 left-0 z-0 h-svh">
+                <svg width="300px" height="100%" viewBox="0 0 444 1458" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="first-path" d="M2 3L355.241 200.494C394.654 222.529 396.52 278.562 358.66 303.171L73.1641 488.743C38.4377 511.316 36.4828 561.45 69.3462 586.658L373.368 819.856C406.59 845.339 404.156 896.153 368.65 918.343L78.8749 1099.45C42.4222 1122.24 41.051 1174.84 76.2671 1199.49L442 1455.5" stroke="white" stroke-width="20" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="fixed top-0 right-0 z-0 h-svh rotate-180">
+                <svg width="300px" height="100%" viewBox="0 0 444 1458" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="second-path" d="M2 3L355.241 200.494C394.654 222.529 396.52 278.562 358.66 303.171L73.1641 488.743C38.4377 511.316 36.4828 561.45 69.3462 586.658L373.368 819.856C406.59 845.339 404.156 896.153 368.65 918.343L78.8749 1099.45C42.4222 1122.24 41.051 1174.84 76.2671 1199.49L442 1455.5" stroke="white" stroke-width="20" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div id="scroll-sections" class="relative z-20">
+                <section id="section1">
+                    <h1 class="rtlAnimation">Section 1</h1>
+                </section>
+                <section id="section2">
+                    <h1 class="ltrAnimation">Section 2</h1>
+                </section>
+                <section id="section3">
+                    <h1 class="rtlAnimation">Section 3</h1>
+                </section>
+                <section id="section4">
+                    <h1 class="ltrAnimation">Section 4</h1>
+                </section>
+                <section id="section5">
+                    <h1 class="rtlAnimation">Section 5</h1>
+                </section>
+            </div>
+        </div>
+	</main>
+</Base>
