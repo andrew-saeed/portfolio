@@ -36,6 +36,19 @@ export default {
 				"large":'2.25rem',//36px
 				"xlarge":'3.75rem'//60px
 			},
+			lineHeight: {
+				'sm': '1.375rem',//22px
+				'sm-1': '1.5rem',//24px
+				'base': '1.625rem',//26px
+				'base-1': '1.75rem',//28px
+				'base-2': '1.875rem',//30px
+				'medium': '2rem',//32px
+				'medium-1': '2.125rem',//34px
+				'medium-2': '2.375rem',//38px
+				'large': '2.875rem',//46px
+				'xlarge': '4.375rem',//70px
+				'xxlarge': '5.625rem',//90px
+			},
 			boxShadow: {
 				'base': '0px 0px 15px -5px var(--black-light)'
 			}
