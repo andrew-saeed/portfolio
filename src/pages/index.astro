@@ -13,6 +13,7 @@ import Linkedin from "../icons/linkedin.astro"
 import ArrowDown from "../icons/arrow-down.astro"
 import X from "../icons/x.astro"
 import RocketLaunch from "../icons/rocket-launch.astro"
+import Sparkle from "../icons/sparkle.astro"
 import LightningBolt from "../icons/lightning-bolt.astro"
 import Flame from "../icons/flame.astro"
 import DownLoad from "../icons/download.astro"
@@ -22,6 +23,8 @@ import Alpinejs from "../icons/alpinejs.astro"
 import Gear from "../icons/gear.astro"
 import OrangeSlice from "../icons/orange-slice.astro"
 import ViewLink from "../icons/viewLink.astro"
+import Vuejs from "../icons/vuejs.astro"
+import Django from "../icons/django.astro"
 ---
 <script src="/src/lib/index.ts"></script>
 <Base>
@@ -75,7 +78,7 @@ import ViewLink from "../icons/viewLink.astro"
 
 					<div>
 						<span class="text-xlarge font-bold">Hi :)</span>
-						<h1 class="flex flex-col text-base-2 text-black-dark font-medium mt-8 pl-4 pt-2 md:mt-0">
+						<h1 class="flex flex-col text-base-2 text-black-dark font-medium pl-4 pt-2 md:mt-0">
 							<span class="capitalize">i'm andrew saeed,</span>
 							<span>a Web Developer.</span>
 						</h1>
@@ -92,16 +95,42 @@ import ViewLink from "../icons/viewLink.astro"
 
 				<ul class="max-w-screen-md mx-auto space-y-4">
 
-					<li id="aspiring-web-developer" class="flex justify-start gap-4">
+					<li id="i-will-create" class="flex justify-start gap-4">
+						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+							<Sparkle />
+						</div>
+						<div>
+							<p class="text-base-2 text-black-light font-black capitalize">
+								I will create
+							</p>
+							<p>
+								a dynamic and interactive website using Django, Alpine.js, and Tailwind. Develop Vue.js admin panels & dashboards with TanStack Query, and custom Static Websites using Astro.
+							</p>
+						</div>
+					</li>
+					<li id="web-developer" class="flex justify-start gap-4">
 						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
 							<RocketLaunch />
 						</div>
 						<div>
 							<p class="text-base-2 text-black-light font-black capitalize">
-								aspiring web developer
+								web developer with
 							</p>
 							<p>
-								with a strong foundation in HTML, CSS, and JavaScript.
+								a strong foundation in HTML, CSS, and JavaScript.
+							</p>
+						</div>
+					</li>
+					<li id="supercharge-vibe-coding-with-ai" class="flex justify-start gap-4">
+						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
+							<LightningBolt />
+						</div>
+						<div>
+							<p class="text-base-2 text-black-light font-black capitalize">
+								supercharge vibe coding with AI
+							</p>
+							<p>
+								accelerating web development through intuitive, flow-based coding and real-time AI assistance.
 							</p>
 						</div>
 					</li>
@@ -111,23 +140,10 @@ import ViewLink from "../icons/viewLink.astro"
 						</div>
 						<div>
 							<p class="text-base-2 text-black-light font-black capitalize">
-								passionate
+								passionate about
 							</p>
 							<p>
-								about learning new technologies and staying updated on the latest trends in web development.
-							</p>
-						</div>
-					</li>
-					<li id="eager-to-leverage-skills" class="flex justify-start gap-4">
-						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-							<LightningBolt />
-						</div>
-						<div>
-							<p class="text-base-2 text-black-light font-black capitalize">
-								eager to leverage skills
-							</p>
-							<p>
-								in modern web developing tools to build engaging and user-friendly web applications.
+								learning new technologies and staying updated on the latest trends in web development.
 							</p>
 						</div>
 					</li>
@@ -143,7 +159,7 @@ import ViewLink from "../icons/viewLink.astro"
 				</div>
 			</section>
 
-			<section id="web-stack" class="bg-[linear-gradient(0deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_15%,_rgba(236,232,208,1)_85%,_rgba(254,250,224,1)_100%)] flex flex-col justify-center items-center -mx-2 pt-36 pb-24 overflow-hidden">
+			<section id="tech-skills" class="bg-[linear-gradient(0deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_15%,_rgba(236,232,208,1)_85%,_rgba(254,250,224,1)_100%)] flex flex-col justify-center items-center -mx-2 pt-36 pb-24 overflow-hidden">
 				
 				<div class="relative">
 
@@ -156,9 +172,8 @@ import ViewLink from "../icons/viewLink.astro"
 					<ul>
 						<li id="astrobuild">
 							<a 
-								class="inline-block w-full h-full bg-white-light
-								p-4 border-4 border-black-light rounded-full 
-								[&_svg_path]:fill-black-light
+								class="block w-full h-full bg-white-light
+								mb-1 p-4 border-4 border-black-light rounded-full 
 								hover:bg-white-dark
 								transition duration-300 ease-out shadow-base" 
 								href="https://astro.build/" 
@@ -170,9 +185,8 @@ import ViewLink from "../icons/viewLink.astro"
 						</li>
 						<li id="tailwindcss">
 							<a 
-								class="inline-block w-full h-full bg-white-light
-								p-4 border-4 border-black-light rounded-full 
-								[&_svg_path]:fill-black-light
+								class="block w-full h-full bg-white-light
+								mb-1 p-4 border-4 border-black-light rounded-full 
 								hover:bg-white-dark
 								transition duration-300 ease-out shadow-base" 
 								href="https://tailwindcss.com/"
@@ -184,9 +198,8 @@ import ViewLink from "../icons/viewLink.astro"
 						</li>
 						<li id="alpinejs">
 							<a 
-								class="inline-block w-full h-full bg-white-light
-								p-4 border-4 border-black-light rounded-full 
-								[&_svg_path]:fill-black-light
+								class="block w-full h-full bg-white-light
+								mb-1 p-4 border-4 border-black-light rounded-full 
 								hover:bg-white-dark
 								transition duration-300 ease-out shadow-base" 
 								href="https://alpinejs.dev/" 
@@ -194,6 +207,32 @@ import ViewLink from "../icons/viewLink.astro"
 								aria-label="alpinejs"
 							>
 								<Alpinejs />
+							</a>
+						</li>
+						<li id="vuejs">
+							<a
+								class="block w-full h-full bg-white-light
+								mb-1 p-4 border-4 border-black-light rounded-full
+								hover:bg-white-dark
+								transition duration-300 ease-out shadow-base"
+								href="https://vuejs.org/"
+								target="_blank"
+								aria-label="vuejs"
+							>
+								<Vuejs />
+							</a>
+						</li>
+						<li id="django">
+							<a
+								class="inline-block justify-center w-full h-full bg-white-light
+								p-4 border-4 border-black-light rounded-full
+								hover:bg-white-dark
+								transition duration-300 ease-out shadow-base"
+								href="https://www.djangoproject.com/"
+								target="_blank"
+								aria-label="django"
+							>
+								<Django />
 							</a>
 						</li>
 					</ul>
@@ -345,9 +384,10 @@ import ViewLink from "../icons/viewLink.astro"
 
 			<footer class="bg-white-dark border-y-2 border-white-light py-2 -mt-12 -mb-2 -mx-2">
 
-				<div class="flex justify-center text-black-light font-black space-x-2">
+				<div class="flex justify-center items-center text-black-light font-black space-x-2">
 					<span class="leading-loose capitalize">with love</span> 
-					<Button ele="link" href="https://www.github.com/andrew-saeed/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button> 
+					<Button ele="link" href="https://www.github.com/andrew-saeed/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
+					<span>@2025</span>
 				</div>
 			</footer>
 

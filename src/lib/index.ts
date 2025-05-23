@@ -62,22 +62,23 @@ function initMainNav() {
             }
         }
     })
-    sectionMeTl.fromTo('#aspiring-web-developer', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
+    sectionMeTl.fromTo('#i-will-create', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
+    .fromTo('#web-developer', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
+    .fromTo('#supercharge-vibe-coding-with-ai', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#passionate', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
-    .fromTo('#eager-to-leverage-skills', {opacity: 0, x: 100}, {opacity: 1, x: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#download-resume', {opacity: 0, y: 100}, {opacity: 1, y: 0, duration: 0.6, ease: 'expo'})
     .pause()
 
-    // Section web-stack gsap-timeline
-    const sectionWebStackTl = gsap.timeline({
+    // Section tech-skills gsap-timeline
+    const sectionTechSkillsTl = gsap.timeline({
         scrollTrigger: {
-            trigger: '#web-stack',
+            trigger: '#tech-skills',
             start: 'top center',
             end: 'bottom center',
             onEnter:()=>{
                 mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
                 mainNav.querySelector('li:nth-child(2)')?.classList.add('currentBtn')
-                sectionWebStackTl.play()
+                sectionTechSkillsTl.play()
             },
             onEnterBack:()=>{
                 mainNav.querySelector('.currentBtn')?.classList.remove('currentBtn')
@@ -85,11 +86,13 @@ function initMainNav() {
             }
         }
     })
-    sectionWebStackTl.fromTo('#astrobuild', {opacity: 0, y: -100, x: -200, rotateZ: -45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
+    sectionTechSkillsTl.fromTo('#astrobuild', {opacity: 0, y: -100, x: -200, rotateZ: -45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#tailwindcss', {opacity: 0, y: -100, x: 200, rotateZ: 45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
     .fromTo('#alpinejs', {opacity: 0, y: -100, x: -200, rotateZ: -45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
-    .fromTo('#chalimo', {opacity: 0, bottom: '100%', right: '-100%'}, {opacity: 1, bottom: '-20%', right: '40%', duration: 0.6, ease: 'expo'})
-    .fromTo('#orange-slice', {opacity: 0, top: '-100%', left: '-40%'}, {opacity: 1, top: '-20%', left: '-5%', duration: 0.6, ease: 'expo'})
+    .fromTo('#vuejs', {opacity: 0, y: -100, x: 200, rotateZ: 45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
+    .fromTo('#django', {opacity: 0, y: -100, x: -200, rotateZ: -45}, {opacity: 1, y: 0, x: 0, rotateZ: 0, duration: 0.6, ease: 'expo'})
+    .fromTo('#chalimo', {opacity: 0, bottom: '100%', right: '-100%'}, {opacity: 1, bottom: '20%', right: '30%', duration: 0.6, ease: 'expo'})
+    .fromTo('#orange-slice', {opacity: 0, top: '-100%', left: '-40%'}, {opacity: 1, top: '-12%', left: '-10%', duration: 0.6, ease: 'expo'})
     .pause()
 
     // Section work gsap-timeline
