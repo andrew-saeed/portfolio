@@ -192,15 +192,21 @@ function initDmForWork() {
     
                 try {
                     
-                    await fetch('/dm-for-work/', {
+                    const res = await fetch('/dm-for-work/', {
                         method: 'POST',
                         body: JSON.stringify(result)
-                    });
-                    
-                    (Alpine.store('notificationModal') as NotificationModal).open({title: 'thank you', body: 'Email was sent.'});
+                    })
+
+                    if(res.ok) {
+
+                        (Alpine.store('notificationModal') as NotificationModal).open({title: 'thank you', body: 'Email was sent.'})
+                    } else {
+
+                        (Alpine.store('notificationModal') as NotificationModal).open({title: 'error', body: 'Sorry, an error has occurred.'})
+                    }
                 } catch {
     
-                    (Alpine.store('notificationModal') as NotificationModal).open({title: 'error', body: 'Sorry, an error has occurred.'});
+                    (Alpine.store('notificationModal') as NotificationModal).open({title: 'error', body: 'Sorry, an error has occurred.'})
                 }
             }
     
