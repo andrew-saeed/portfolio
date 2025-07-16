@@ -22,6 +22,7 @@
     "axios": "^1.7.4",
     "gsap": "^3.12.5",
     "swiper": "^10.3.1",
+    "three": "^0.178.0",
     "typescript": "^5.5.3",
     "zod": "^3.23.8"
   },
@@ -29,6 +30,7 @@
     "@types/alpinejs": "^3.13.10",
     "@types/node": "^20.14.10",
     "@types/scrollmagic": "^2.0.8",
+    "@types/three": "^0.178.1",
     "sass": "^1.77.6",
     "tailwindcss": "^4.1.10"
   }
