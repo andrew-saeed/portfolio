@@ -8,19 +8,19 @@ function initNotificationModal() {
         isOpen: false,
         title: '',
         body: '',
-        open({title, body}:{title: string, body: string}):void {
+        open({title, body}) {
             document.body.style.overflowY = 'hidden'
             
             this.isOpen = true
             this.title = title
             this.body = body
         },
-        close():void {
+        close() {
             document.body.style.overflowY = 'auto'
     
             this.isOpen = false
         }
-    } as NotificationModal)
+    })
 }
 
 // init MainNav component
@@ -28,7 +28,7 @@ function initMainNav() {
 
     gsap.registerPlugin(ScrollTrigger)
 
-    const mainNav = document.querySelector<HTMLElement>('#main-nav')!
+    const mainNav = document.querySelector('#main-nav')
 
     //Section top-main gsap-timeline
     gsap.timeline({
@@ -143,12 +143,10 @@ function initMainNav() {
 function initDmForWork() {
 
     const InputsSchema = z.object({
-        subject: z.string().min(1, 'subject is required'),
-        email: z.string().min(1, 'email is required').email('email is not valid'),
-        message: z.string().min(9, 'message is too short').max(255, 'message max is 255')
+        subject: z.string().min(1, 'Subject is required'),
+        email: z.string().min(1, 'Email is required').email('email is not valid'),
+        message: z.string().nonempty("Message cannot be empty").min(9, 'Message is too short').max(255, 'Message max is 255')
     })
-    
-    type InputsSchemaType = z.infer<typeof InputsSchema>
     
     Alpine.data('dmForWork', () => ({
         sending: false,
@@ -157,22 +155,22 @@ function initDmForWork() {
             email: '',
             message: ''
         },
-        validate(inputs:InputsSchemaType) {
+        validate(inputs) {
     
             this.errors = { subject: '', email: '', message: '' }
     
             return InputsSchema.safeParse(inputs)
         },
-        async submit(e: SubmitEvent) {
+        async submit(e) {
     
             if(this.sending) return
     
             this.sending = true
     
-            const form = e.target as HTMLFormElement
-            const subjectInput = form.elements.namedItem('subject') as HTMLInputElement
-            const emailInput = form.elements.namedItem('email') as HTMLInputElement
-            const messageInput = form.elements.namedItem('message') as HTMLInputElement
+            const form = e.target
+            const subjectInput = form.elements.namedItem('subject')
+            const emailInput = form.elements.namedItem('email')
+            const messageInput = form.elements.namedItem('message')
     
             const inputs = {
                 subject: subjectInput.value,
@@ -185,7 +183,7 @@ function initDmForWork() {
     
                 result.error?.issues.forEach(error => {
     
-                    const errorPath = error.path[0] as keyof typeof this.errors
+                    const errorPath = error.path[0]
                     if (!this.errors[errorPath]) this.errors[errorPath] = error.message
                 })
             } else {
@@ -199,14 +197,14 @@ function initDmForWork() {
 
                     if(res.ok) {
 
-                        (Alpine.store('notificationModal') as NotificationModal).open({title: 'thank you', body: 'Email was sent.'})
+                        (Alpine.store('notificationModal')).open({title: 'thank you', body: 'Email was sent.'})
                     } else {
 
-                        (Alpine.store('notificationModal') as NotificationModal).open({title: 'error', body: 'Sorry, an error has occurred.'})
+                        (Alpine.store('notificationModal')).open({title: 'error', body: 'Sorry, an error has occurred.'})
                     }
                 } catch {
     
-                    (Alpine.store('notificationModal') as NotificationModal).open({title: 'error', body: 'Sorry, an error has occurred.'})
+                    (Alpine.store('notificationModal')).open({title: 'error', body: 'Sorry, an error has occurred.'})
                 }
             }
     
