@@ -140,34 +140,34 @@ const columns = [
 	Alpine.data('animatedColumns', () => ({
 		init() {
 
-			this.$el.querySelectorAll<HTMLElement>('.single-column').forEach( column => {
+			this.$el.querySelectorAll('.single-column').forEach( column => {
 
-				const topTileMask = column.querySelector<HTMLElement>('.top-tile_mask')!
-				const bottomTileMask = column.querySelector<HTMLElement>('.bottom-tile_mask')!
+				const topTileMask = column.querySelector('.top-tile_mask')
+				const bottomTileMask = column.querySelector('.bottom-tile_mask')
 
 				if(topTileMask && topTileMask.parentNode) {
 					topTileMask.addEventListener('mouseenter', () => {
-						topTileMask.style.opacity = '0';
-						(topTileMask.parentNode as HTMLElement).style.zIndex = '10';
-						(topTileMask.parentNode as HTMLElement).style.height = '100%';
+						topTileMask.style.opacity = '0'
+						topTileMask.parentNode.style.zIndex = '10'
+						topTileMask.parentNode.style.height = '100%'
 					})
 
 					topTileMask.addEventListener('mouseout', () => {
-						topTileMask.style.opacity = '1';
-						(topTileMask.parentNode as HTMLElement).style.height = '220px';
+						topTileMask.style.opacity = '1'
+						topTileMask.parentNode.style.height = '220px'
 					})
 				}
 
 				if(bottomTileMask && bottomTileMask.parentNode) {
 					bottomTileMask.addEventListener('mouseenter', () => {
-						bottomTileMask.style.opacity = '0';
-						(topTileMask.parentNode as HTMLElement).style.zIndex = 'unset';
-						(bottomTileMask.parentNode as HTMLElement).style.height = '100%';
+						bottomTileMask.style.opacity = '0'
+						topTileMask.parentNode.style.zIndex = 'unset'
+						bottomTileMask.parentNode.style.height = '100%'
 					})
 		
 					bottomTileMask.addEventListener('mouseout', () => {
-						bottomTileMask.style.opacity = '1';
-						(bottomTileMask.parentNode as HTMLElement).style.height = '220px';
+						bottomTileMask.style.opacity = '1'
+						bottomTileMask.parentNode.style.height = '220px'
 					})
 				}
 			})

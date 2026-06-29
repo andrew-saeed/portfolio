@@ -1,11 +1,4 @@
 ---
-interface Props {
-    type?: 'text' | 'email' | 'password'
-    id: string;
-    name: string;
-    placeholder: string;
-}
-
 const { type = 'text', id, name, placeholder } = Astro.props
 ---
 <input 

@@ -57,47 +57,7 @@ import Minus from "../../icons/minus.astro"
 	import Alpine from "alpinejs"
     import axios from "axios"
 
-    type Product = {
-        id: number,
-        thumbnail: string,
-        price: number,
-        title: string,
-        img: string,
-        rating: number
-    }
-
-    type CartProduct = Product & {amount: number}
-
-    type ProductsGetRes = {
-        limit: number,
-        products: Product[],
-        skip: number,
-        total: number
-    }
-
-    type ShoppingCartProductsList = {
-        toggleCart: boolean,
-        loading: boolean,
-        products: Product[],
-        limit: number,
-        page: number,
-        init(): Promise<void>,
-        paginate(): Promise<void>,
-        toggleCartHandler(): void
-    }
-
-    type ShoppingCartTheCart = {
-        totalPrice: number,
-        totalProducts: number,
-        products: CartProduct[],
-        cartBtnToggler: Element,
-        currentView: string,
-        init(): void,
-        addProduct(product:Product): void,
-        removeProduct(product:CartProduct): void
-    }
-
-    const shoppingCartTheCart:ShoppingCartTheCart = {
+    const shoppingCartTheCart = {
         totalPrice: 0,
         totalProducts: 0,
         products: [],
@@ -108,7 +68,7 @@ import Minus from "../../icons/minus.astro"
                 this.cartBtnToggler.classList.remove('animate__rubberBand')
             })
         },
-        addProduct(newProduct:Product) {
+        addProduct(newProduct) {
             this.totalPrice += newProduct.price
             this.totalProducts += 1
             const productIndex = this.products.findIndex( product => product.id === newProduct.id)
@@ -119,7 +79,7 @@ import Minus from "../../icons/minus.astro"
             }
             this.cartBtnToggler.classList.add('animate__rubberBand')
         },
-        removeProduct(productToRemove:CartProduct) {
+        removeProduct(productToRemove) {
             this.totalPrice = Math.round((this.totalPrice - productToRemove.price) * 100) / 100;
             this.totalProducts -= 1
             const productToRemoveIndex = this.products.findIndex( product => product.id === productToRemove.id)
@@ -133,7 +93,7 @@ import Minus from "../../icons/minus.astro"
 
     Alpine.store('shoppingCartTheCart', shoppingCartTheCart)
 
-	Alpine.data('shoppingCartProductsList', ():ShoppingCartProductsList => ({
+	Alpine.data('shoppingCartProductsList', () => ({
         toggleCart: false,
         loading: false,
         products: [],
@@ -141,7 +101,7 @@ import Minus from "../../icons/minus.astro"
         page: 1,
 		async init() {
             this.loading = true
-			const res = await axios.get<ProductsGetRes>('https://dummyjson.com/products?limit=10&skip=0')
+			const res = await axios.get('https://dummyjson.com/products?limit=10&skip=0')
             this.products = res.data.products
             this.loading = false
 		},
@@ -153,7 +113,7 @@ import Minus from "../../icons/minus.astro"
 
             this.page += 1
             const skip = ( this.page - 1 ) * this.limit;
-			const res = await axios.get<ProductsGetRes>(`https://dummyjson.com/products?limit=${this.limit}&skip=${skip}`)
+			const res = await axios.get(`https://dummyjson.com/products?limit=${this.limit}&skip=${skip}`)
             this.products = [...this.products, ...res.data.products]
 
             this.loading = false
@@ -161,8 +121,8 @@ import Minus from "../../icons/minus.astro"
         toggleCartHandler() {
             this.toggleCart = !this.toggleCart
             if(this.toggleCart) {
-                document.body.style.overflowY = 'hidden';
-                (Alpine.store('shoppingCartTheCart') as ShoppingCartTheCart).currentView = 'cart';
+                document.body.style.overflowY = 'hidden'
+                // Alpine.store('shoppingCartTheCart').currentView = 'cart'
             } else {
                 document.body.style.overflowY = 'scroll'
             }

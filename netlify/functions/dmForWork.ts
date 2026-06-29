@@ -1,8 +1,6 @@
-import type { Config } from "@netlify/functions"
-
 import { TransactionalEmailsApi, SendSmtpEmail, TransactionalEmailsApiApiKeys } from "@getbrevo/brevo"
 
-export default async (req: Request) => {
+export default async (req) => {
 
   const apiInstance = new TransactionalEmailsApi()
   apiInstance.setApiKey(
@@ -30,6 +28,6 @@ export default async (req: Request) => {
   return new Response(`mail '${data.subject}' was sent`)
 }
 
-export const config: Config = {
+export const config = {
   path: "/dm-for-work"
 }

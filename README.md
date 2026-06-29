@@ -20,4 +20,4 @@ All commands are run from the root of the project, from a terminal:
 
 ## 🙏 Your feedback is much appreciated
 
-Feel free to check my repo and recommend the best practices. Wish me luck 🙌🙌
+Feel free to check my repo and recommend the best practices 🙌🙌
