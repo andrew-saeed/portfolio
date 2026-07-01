@@ -24,8 +24,8 @@ function initNotificationModal() {
 }
 
 // init MainNav component
-function initMainNav() {
-
+async function initMainNav() {
+    
     gsap.registerPlugin(ScrollTrigger)
 
     const mainNav = document.querySelector('#main-nav')
@@ -190,7 +190,7 @@ function initDmForWork() {
     
                 try {
                     
-                    const res = await fetch('/dm-for-work/', {
+                    const res = await fetch('/api/dm-for-work', {
                         method: 'POST',
                         body: JSON.stringify(result)
                     })
