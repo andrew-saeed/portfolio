@@ -1,469 +1,107 @@
 ---
-import Base from "../layouts/base.astro"
-
-import Nav from "../partials/nav.astro"
-import DmForWorkForm from "../partials/dm-for-work-form.astro"
-
-import NotificationModal from "../theme/notification-modal.astro"
-import Button from "../theme/button.astro"
-
-import DevTo from "../icons/devTo.astro"
-import Github from "../icons/github.astro"
-import Linkedin from "../icons/linkedin.astro"
-import ArrowDown from "../icons/arrow-down.astro"
-import X from "../icons/x.astro"
-import RocketLaunch from "../icons/rocket-launch.astro"
-import Sparkle from "../icons/sparkle.astro"
-import LightningBolt from "../icons/lightning-bolt.astro"
-import Flame from "../icons/flame.astro"
-import DownLoad from "../icons/download.astro"
-import AstroBuild from "../icons/astro.astro"
-import TailWindCSS from "../icons/tailwindcss.astro"
-import Alpinejs from "../icons/alpinejs.astro"
-import Gear from "../icons/gear.astro"
-import OrangeSlice from "../icons/orange-slice.astro"
-import ViewLink from "../icons/viewLink.astro"
-import Vuejs from "../icons/vuejs.astro"
-import Django from "../icons/django.astro"
 ---
-<script src="/src/lib/index.js"></script>
-<Base>
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+	}
 
-	<title>Andrew Saeed - Web Developer Portfolio</title>
-	<meta name="description" content="Andrew Saeed's portfolio - a showcase of web development skills, projects, and expertise in HTML, CSS, JavaScript, and more.">
-	<meta name="keywords" content="Web Developer, Portfolio, JavaScript, HTML, CSS, Astro, Projects, Tailwind, Alpinejs, Django">
-	<meta name="author" content="Andrew Saeed">
-	<meta property="og:title" content="Andrew Saeed - Web Developer">
-	<meta property="og:description" content="View my work and projects. Let's build great web apps">
-	<meta property="og:image" content="https://andrewsaeed.dev/portfolio-screenshot.png">
-	<meta property="og:url" content="https://andrewsaeed.dev">
-	<meta property="og:type" content="website">
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-	<Nav slot="nav" />
-
-	<main slot="main">
-
-		<div id="home-layout" class="relative p-2">
-
-			<section id="top-main" class="h-svh flex flex-col justify-center items-center">
-
-				<div class="grid md:grid-cols-[1fr_1fr]">
-
-					<div class="flex flex-col items-center">
-						<p class="w-[9.375rem] h-[9.375rem] border-2 border-black-dark rounded-full overflow-hidden shadow-base">
-							<img 
-								class="h-full"
-								src="/me_146.webp"
-								srcset="me_146.webp,
-								me_221.webp 2x"
-								alt="test" />
-						</p>
+	header {
+		height: 100vh;
+		display: grid;
+		grid-template-rows: 1fr min-content 1fr;
+		gap: 1.8rem;
+		background: #9cf2c0;
+    	color: #5b8a95;
 		
-						<ul class="flex justify-center mt-4 [&_li]:p-1">
-							<li>
-								<Button ele="link" href="https://x.com/andrewsaeed95" style="primary-icon" size="small-icon" target="_blank" ariaLabel="X"><X /></Button>
-							</li>
-							<li>
-								<Button ele="link" href="https://www.linkedin.com/in/andrew-saeed-756748309/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Linkedin"><Linkedin /></Button>
-							</li>
-							<li>
-								<Button ele="link" href="https://www.github.com/andrew-saeed/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
-							</li>
-							<li>
-								<Button ele="link" href="https://dev.to/andrew-saeed" style="primary-icon" size="small-icon" target="_blank" ariaLabel="dev.to"><DevTo /></Button>
-							</li>
-						</ul>
-					</div>
+		h1 {
+			font-weight: 900;
+			text-align: center;
+			align-self: end;
+		}
+		ul {
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: center;
+			gap: 1.2rem;
+			list-style: none;
+			font-size: 22px;
+		}
+	}
 
-					<div>
-						<span class="text-xlarge max-md:leading-24 font-bold">Hi :)</span>
-						<h1 class="flex flex-col text-medium text-black-dark pl-4 pt-2 md:pt-6 md:mt-0">
-							<span class="tracking-widest capitalize">i'm andrew saeed</span>
-							<span class="text-base-1 text-center font-bold">Web Developer</span>
-						</h1>
-					</div>
-				</div>
+	/* HTML: <div class="loader"></div> */
+	.loader-container {
+		height: 100%;
+		width: 100%;
+		justify-items: center;
 
-				<div class="mt-16 animate-bounce">
-					<Button ele="link" href="#me" style="outline-icon" size="large-icon" ariaLabel="about me"><ArrowDown /></Button>
-				</div>
+		& > div {
+			display: flex;
+			align-items: center;
+			gap: 2.5rem;
 
-			</section>
-
-			<section id="me" class="flex flex-col justify-center items-center overflow-hidden py-24">
-
-				<ul class="max-w-screen-md mx-auto space-y-4">
-
-					<li id="i-will-create" class="flex justify-start gap-4">
-						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-							<Sparkle />
-						</div>
-						<div>
-							<p class="text-base-2 text-black-light font-black capitalize">
-								I will create
-							</p>
-							<p>
-								a dynamic and interactive website using Django, Alpine.js, and Tailwind. Develop Vue.js admin panels & dashboards with TanStack Query, and custom Static Websites using Astro.
-							</p>
-						</div>
-					</li>
-					<li id="web-developer" class="flex justify-start gap-4">
-						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-							<RocketLaunch />
-						</div>
-						<div>
-							<p class="text-base-2 text-black-light font-black capitalize">
-								web developer with
-							</p>
-							<p>
-								a strong foundation in HTML, CSS, and JavaScript.
-							</p>
-						</div>
-					</li>
-					<li id="supercharge-vibe-coding-with-ai" class="flex justify-start gap-4">
-						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-							<LightningBolt />
-						</div>
-						<div>
-							<p class="text-base-2 text-black-light font-black capitalize">
-								supercharge vibe coding with AI
-							</p>
-							<p>
-								accelerating web development through intuitive, flow-based coding and real-time AI assistance.
-							</p>
-						</div>
-					</li>
-					<li id="passionate" class="flex justify-start gap-4">
-						<div class="[&_svg]:w-[2rem] [&_svg]:h-[2rem] [&_svg_path]:fill-black-light">
-							<Flame />
-						</div>
-						<div>
-							<p class="text-base-2 text-black-light font-black capitalize">
-								passionate about
-							</p>
-							<p>
-								learning new technologies and staying updated on the latest trends in web development.
-							</p>
-						</div>
-					</li>
-				</ul>
-
-				<div id="download-resume" class="mt-8 md:mt-14">
-					<Button ele="link" href="/resume.pdf" target="_blank" style="primary-icon-text" size="large-icon-text">
-						<span class="icon" slot="icon">
-							<DownLoad slot="icon" />
-						</span>
-						<span class="text" slot="text">download Resume</span>
-					</Button>
-				</div>
-			</section>
-
-			<section id="tech-skills" class="bg-[linear-gradient(0deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_15%,_rgba(236,232,208,1)_85%,_rgba(254,250,224,1)_100%)] flex flex-col justify-center items-center -mx-2 pt-36 pb-24 overflow-hidden">
-				
-				<div class="relative">
-
-					<div id="orange-slice" class="absolute top-[-20%] left-[-5%] w-[120px] h-[120px] rotate-180 [&_svg_path]:fill-black-light">
-						<OrangeSlice />
-					</div>
-
-					<div id="chalimo" class="absolute bottom-[-20%] right-[40%] w-[20px] h-[500px] bg-black-light border-2 border-white-light rounded-full rotate-45"></div>
-
-					<ul>
-						<li id="astrobuild">
-							<a 
-								class="block w-full h-full bg-white-light
-								mb-1 p-4 border-4 border-black-light rounded-full 
-								hover:bg-white-dark
-								transition duration-300 ease-out shadow-base" 
-								href="https://astro.build/" 
-								target="_blank"
-								aria-label="astro build"
-							>
-								<AstroBuild />
-							</a>
-						</li>
-						<li id="tailwindcss">
-							<a 
-								class="block w-full h-full bg-white-light
-								mb-1 p-4 border-4 border-black-light rounded-full 
-								hover:bg-white-dark
-								transition duration-300 ease-out shadow-base" 
-								href="https://tailwindcss.com/"
-								target="_blank"
-								aria-label="tailwind css"
-							>
-								<TailWindCSS />
-							</a>
-						</li>
-						<li id="alpinejs">
-							<a 
-								class="block w-full h-full bg-white-light
-								mb-1 p-4 border-4 border-black-light rounded-full 
-								hover:bg-white-dark
-								transition duration-300 ease-out shadow-base" 
-								href="https://alpinejs.dev/" 
-								target="_blank"
-								aria-label="alpinejs"
-							>
-								<Alpinejs />
-							</a>
-						</li>
-						<li id="vuejs">
-							<a
-								class="block w-full h-full bg-white-light
-								mb-1 p-4 border-4 border-black-light rounded-full
-								hover:bg-white-dark
-								transition duration-300 ease-out shadow-base"
-								href="https://vuejs.org/"
-								target="_blank"
-								aria-label="vuejs"
-							>
-								<Vuejs />
-							</a>
-						</li>
-						<li id="django">
-							<a
-								class="inline-block justify-center w-full h-full bg-white-light
-								p-4 border-4 border-black-light rounded-full
-								hover:bg-white-dark
-								transition duration-300 ease-out shadow-base"
-								href="https://www.djangoproject.com/"
-								target="_blank"
-								aria-label="django"
-							>
-								<Django />
-							</a>
-						</li>
-					</ul>
-				</div>
-
-			</section>
-
-			<section id="work" class="relative flex flex-col justify-center items-center pt-40 overflow-hidden">
-
-				<ul class="absolute top-[5rem] left-1/2 -translate-x-1/2 grid grid-cols-3 opacity-40">
-					<li class="w-[2.5rem] h-[2.5rem] justify-self-end -mr-3">
-						<div class="origin-center scale-x-[-1]">
-							<div class="animate-spin">
-								<Gear />
-							</div>
-						</div>
-					</li>
-					<li class="w-[4rem] h-[4rem] justify-self-center">
-						<div class="animate-spin">
-							<Gear />
-						</div>
-					</li>
-					<li class="w-[2.5rem] h-[2.5rem] justify-self-start self-end -ml-3">
-						<div class="origin-center scale-x-[-1]">
-							<div class="animate-spin">
-								<Gear />
-							</div>
-						</div>
-					</li>
-				</ul>
-				
-				<div class="w-full max-w-screen-lg mx-auto space-y-12">
-
-					<div id="work-projects">
-						<h2 class="sub-title relative text-large text-black-light font-black capitalize mb-8">projects</h2>
-
-						<ul class="samples-list relative grid gap-4 grid-cols-[repeat(auto-fit,minmax(13.75rem,14rem))]">
-							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
-								<h3 class="text-base-1 font-black capitalize tracking-wider">my portfolio</h3>
-
-								<p class="-mx-2">
-									<img src="/portfolio.webp" alt="portfolio">
-								</p>
-
-								<div class="flex justify-end items-end space-x-2">
-									<Button ele="link" href="https://github.com/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="portfolio source code"><Github /></Button>
-								</div>
-							</li>
-							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
-								<h3 class="text-base-1 font-black capitalize tracking-wider">images sniper chrome extension</h3>
-
-								<p class="-mx-2">
-									<img src="/images-sniper.webp" alt="images sniper">
-								</p>
-
-								<div class="flex justify-end items-end space-x-2">
-									<Button ele="link" href="https://chromewebstore.google.com/detail/images-sniper/npnednigbhjjgbaflkcjjmfbfnmifjep" style="primary-icon" size="small-icon" target="_blank" ariaLabel="images sniper chrome extension"><ViewLink /></Button>
-									<Button ele="link" href="https://github.com/andrew-saeed/images-sniper-chrome-extension" style="primary-icon" size="small-icon" target="_blank" ariaLabel="images sniper chrome extension source code"><Github /></Button>
-								</div>
-							</li>
-							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
-								<h3 class="text-base-1 font-black capitalize tracking-wider">ta3allam el roosiya</h3>
-
-								<p class="-mx-2">
-									<img src="/ta3allam-el-roosiya.webp" alt="images sniper">
-								</p>
-
-								<div class="flex justify-end items-end space-x-2">
-									<Button ele="link" href="https://ta3allam-el-roosiya.netlify.app" style="primary-icon" size="small-icon" target="_blank" ariaLabel="ta3allam el roosiya"><ViewLink /></Button>
-									<Button ele="link" href="https://github.com/andrew-saeed/ta3allam-el-roosiya" style="primary-icon" size="small-icon" target="_blank" ariaLabel="ta3allam el roosiya source code"><Github /></Button>
-								</div>
-							</li>
-							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
-								<h3 class="text-base-1 font-black capitalize tracking-wider">Astro Markdown Blog Template</h3>
-
-								<p class="-mx-2">
-									<img class="w-full" src="/template-cosmic-dust.webp" alt="cosmic-dust blog web template">
-								</p>
-
-								<div class="flex justify-end items-end space-x-2">
-									<Button ele="link" href="https://cosmic-dust-blog-web-template.netlify.app/" style="primary-icon" size="small-icon" target="_blank" ariaLabel="cosmic-dust blog web template live demo"><ViewLink /></Button>
-									<Button ele="link" href="https://github.com/andrew-saeed/cosmic-dust-blog-web-template" style="primary-icon" size="small-icon" target="_blank" ariaLabel="cosmic-dust blog web template source code"><Github /></Button>
-								</div>
-							</li>
-							<li class="grid gap-4 p-2 border-4 border-black-dark rounded-lg shadow-base">
-								<h3 class="text-base-1 font-black capitalize tracking-wider">CMS - Django</h3>
-
-								<p class="-mx-2">
-									<img class="w-full" src="/cms.webp" alt="cms screenshot">
-								</p>
-
-								<div class="flex justify-end items-end space-x-2">
-									<Button ele="link" href="https://andrewsaeed95.pythonanywhere.com" style="primary-icon" size="small-icon" target="_blank" ariaLabel="cms live demo"><ViewLink /></Button>
-									<Button ele="link" href="https://github.com/andrew-saeed/cms" style="primary-icon" size="small-icon" target="_blank" ariaLabel="cms source code"><Github /></Button>
-								</div>
-							</li>
-						</ul>
-					</div>
-
-					<div id="work-articles">
-						<h2 class="sub-title relative text-large text-black-light font-black capitalize mb-8">articles</h2>
-
-						<ul class="samples-list relative space-y-8">
-							<li class="flex max-md:flex-col gap-3">
-								<div class="date-stamp grow-0">
-									<div class="date-stamp__box">
-										<div class="box__header md:w-[85.5px] bg-black-dark text-white md:text-medium capitalize">
-											<span class="uppercase">jul</span>
-											<span class="font-black md:text-medium-2">16</span>
-										</div>
-										<span class="font-black">2025</span>
-									</div>
-								</div>
-								<div class="grow-1">
-									<h3 class="text-medium-1 font-bold leading-base-2 mb-2">
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/threejs-tutorial-for-beginners-create-a-3d-solar-system-step-by-step-3lgn">
-											Three.js Tutorial for Beginners: Create a 3D Solar System Step by Step.
-										</a>
-									</h3>
-									<p class="text-base-1 text-black-light">
-										<span>Getting started with Three.js can feel overwhelming when you’re new to 3D graphics, but it doesn’t have to be. In this tutorial, you’ll take your first practical steps into Three.js by building a small project: a 3D Solar System...</span>
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/threejs-tutorial-for-beginners-create-a-3d-solar-system-step-by-step-3lgn">
-											Read more
-										</a>
-									</p>
-								</div>
-							</li>
-							<li class="flex max-md:flex-col gap-3">
-								<div class="date-stamp grow-0">
-									<div class="date-stamp__box">
-										<div class="box__header md:w-[85.5px] bg-black-dark text-white md:text-medium capitalize">
-											<span class="uppercase">feb</span>
-											<span class="font-black md:text-medium-2">8</span>
-										</div>
-										<span class="font-black">2025</span>
-									</div>
-								</div>
-								<div class="grow-1">
-									<h3 class="text-medium-1 font-bold leading-base-2 mb-2">
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/bring-your-scroll-to-life-a-beginners-guide-to-scroll-based-animations-with-gsap-f95">
-											Bring Your Scroll to Life: A Beginner’s Guide to Scroll-Based Animations with GSAP.
-										</a>
-									</h3>
-									<p class="text-base-1 text-black-light">
-										<span>In this post, we’ll break down how to use HTML, CSS, and JavaScript—with the help of GSAP and its ScrollTrigger plugin—to create scroll-based animations...</span>
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/bring-your-scroll-to-life-a-beginners-guide-to-scroll-based-animations-with-gsap-f95">
-											Read more
-										</a>
-									</p>
-								</div>
-							</li>
-							<li class="flex max-md:flex-col gap-3">
-								<div class="date-stamp grow-0">
-									<div class="date-stamp__box">
-										<div class="box__header md:w-[85.5px] bg-black-dark text-white md:text-medium capitalize">
-											<span class="uppercase">sep</span>
-											<span class="font-black md:text-medium-2">2</span>
-										</div>
-										<span class="font-black">2024</span>
-									</div>
-								</div>
-								<div class="grow-1">
-									<h3 class="text-medium-1 font-bold leading-base-2 mb-2">
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/create-shopping-cart-using-alpinejs-1ncf">
-											Create Shopping Cart using Alpinejs.
-										</a>
-									</h3>
-									<p class="text-base-1 text-black-light">
-										<span>We'll delve into the process of creating a shopping cart using Alpine.js. We'll explore how to structure components, manage state with Alpine's store, and implement essential features such as fetching new products, adding and removing items, calculating total price, and handling UI interactions...</span>
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/create-shopping-cart-using-alpinejs-1ncf">
-											Read more
-										</a>
-									</p>
-								</div>
-							</li>
-							<li class="flex max-md:flex-col gap-3">
-								<div class="date-stamp grow-0">
-									<div class="date-stamp__box">
-										<div class="box__header md:w-[85.5px] bg-black-dark text-white md:text-medium capitalize">
-											<span class="uppercase">jul</span>
-											<span class="font-black md:text-medium-2">21</span>
-										</div>
-										<span class="font-black">2024</span>
-									</div>
-								</div>
-								<div class="grow-1">
-									<h3 class="text-medium-1 font-bold leading-base-2 mb-2">
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/create-animated-columns-of-tiles-with-a-background-images-fade-in-and-fade-out-33k5">
-											Create animated columns of tiles with a background-images fade in and fade out.
-										</a>
-									</h3>
-									<p class="text-base-1 text-black-light">
-										<span>I will show you how I created animated columns of tiles that smoothly expand and animate both their height and background images ...</span>
-										<a class="underline" target="_blank" href="https://dev.to/andrew-saeed/create-animated-columns-of-tiles-with-a-background-images-fade-in-and-fade-out-33k5">
-											Read more
-										</a>
-									</p>
-								</div>
-							</li>
-						</ul>
-					</div>
-
-					<div class="flex justify-center !mt-24">
-						<a href='https://ko-fi.com/I2I610RQ2U' target='_blank'><img height='68' style='border:0px;height:68px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' alt='Buy Me a Coffee at ko-fi.com' /></a>
-					</div>
-
-				</div>
-			</section>
-
-			<section id="dm" class="bg-[linear-gradient(180deg,_rgba(254,250,224,1)_0%,_rgba(234,230,207,1)_50%)] flex flex-col justify-center items-center -mx-2 pt-32 pb-32">
-				
-				<div class="w-full max-w-screen-md mx-auto px-2">
-					<h2 class="text-large text-black-light font-black first-letter:capitalize mb-8">work with me :)</h2>
-
-					<DmForWorkForm />
-				</div>
-			</section>
-
-			<footer class="bg-white-dark border-y-2 border-white-light py-2 -mt-12 -mb-2 -mx-2">
-
-				<div class="flex justify-center items-center text-black-light font-black space-x-2">
-					<span class="leading-loose capitalize">with love</span> 
-					<Button ele="link" href="https://www.github.com/andrew-saeed/portfolio" style="primary-icon" size="small-icon" target="_blank" ariaLabel="Github"><Github /></Button>
-					<span>@2025</span>
-				</div>
-			</footer>
-
+			span {
+				font-size: 1.2rem;
+				text-transform: capitalize;
+			}
+		}
+	}
+	.loader {
+		width: 100px;
+		height: 60px;
+		display: flex;
+		animation: l12-0 2s infinite linear;
+	}
+	.loader::before,
+	.loader::after  {
+		content:"";
+		flex:4;
+		background: 
+			radial-gradient(at 50% 20%,#0000,#000a) bottom left/20px 20px repeat-x,
+			linear-gradient(red 0 0) bottom/100% 20px no-repeat #929292;
+  		-webkit-mask:
+			repeating-linear-gradient(90deg,#000 0 4px,#0000 0 20px) 8px 0,
+			radial-gradient(farthest-side,#000 90%,#0000) left bottom/20px 20px repeat-x;
+	}
+	.loader::after {
+		flex: 1;
+		transform-origin: top;
+		animation: l12-1 1s cubic-bezier(0,20,1,20) infinite;
+	}
+	@keyframes l12-0 { 
+		0%,49.9% {transform: scaleX(1)}
+		50%,100% {transform: scaleX(-1)}
+	}
+	@keyframes l12-1 { 
+		100% {transform: rotate(-2deg)}
+	}
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Andrew Saeed</title>
+	<meta name="description" content="Andrew Saeed">
+	<meta name="keywords" content="Andrew Saeed">
+	<meta name="author" content="Andrew Saeed">
+</head>
+<body>
+	<header>
+		<h1>يا واش يا واش يا مرجيحة</h1>
+		<ul>
+			<li>يا ريتني كنت اشتريت دومين</li>
+			<li>.com</li>
+			<li>بدال</li>
+			<li>.dev</li>
+			<li>كان هينفع دايماً</li>
+		</ul>
+		<div class="loader-container">
+			<div>
+				<span>analyzing ...</span>
+				<div class="loader"></div>
+			</div>
 		</div>
-
-	</main>
-
-	<NotificationModal slot="notification-modal" />
-
-</Base>
+	</header>
+</body>
+</html>
